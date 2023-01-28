@@ -3,9 +3,8 @@
 	import { searchResults, totalHits } from '../lib/stores';
 	import SearchResults from '$lib/SearchResults.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	
+
 	export let data;
-	console.log(data)
 	searchResults.set(data.hits.hits)
 	$totalHits = data.hits.total.value
 </script>

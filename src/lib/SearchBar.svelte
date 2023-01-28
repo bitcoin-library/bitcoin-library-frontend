@@ -1,26 +1,30 @@
 <script>
 	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits } from '$lib/stores';
-	import { buildBody } from "$lib/elastic/helper"
+	import { buildBody } from '$lib/elastic/helper';
+
+	let itemSelected = {_source: {title: ""}}
 
 	async function handleSearch() {
 		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current);
 		const res = await fetch('/api/elastic/search', body);
 		const result = await res.json();
-		console.log(result);
-		searchResults.set(result.hits.hits);
-		$totalHits = result.hits.total.value
+		result?.hits && searchResults.set(result.hits.hits);
+		$totalHits = result.hits.total.value;
 	}
+	$: searchTerm.set(itemSelected?._source?.title)
 	$: console.log($searchTerm);
 </script>
 
-<div class="form-control">
-	<div class="input-group">
-		<form on:submit|preventDefault={handleSearch}>
+<form on:submit|preventDefault={handleSearch}>
+	<div class="form-control">	
+		<div class="input-group">
 			<input
 				type="text"
 				placeholder="Search…"
 				class="input input-bordered"
 				bind:value={$searchTerm}
+				on:change={handleSearch}
+				on:input={handleSearch}
 			/>
 			<button class="btn btn-square" on:click={handleSearch}>
 				<svg
@@ -37,6 +41,6 @@
 					/></svg
 				>
 			</button>
-		</form>
+		</div>
 	</div>
-</div>
+</form>

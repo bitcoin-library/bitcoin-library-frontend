@@ -1,6 +1,14 @@
+import { get } from 'svelte/store';
+import { resultsPerPage } from '$lib/stores';
 
-export async function load({fetch}) {
-  const res = await ( await fetch('/api/elastic/search_all', { method: 'POST', })).json()
-  console.log("loading data")
-  return res
+
+/** @type {import('./$types').PageLoad} */
+export async function load({ fetch }) {
+	const res = await (
+		await fetch('/api/elastic/search_all', {
+			method: 'POST',
+			body: JSON.stringify({ size: get(resultsPerPage) })
+		})
+	).json();
+	return res;
 }

@@ -1,35 +1,53 @@
 <script>
 	import { pagination, resultsPerPage, searchTerm, searchResults, totalHits } from '$lib/stores';
-    import { buildBody } from '$lib/elastic/helper';
+	import { buildBody } from '$lib/elastic/helper';
 
 	let pages;
 
-    async function handleClick(event) {
-        const selectedPage = event.target.dataset.title
-        $pagination.current = selectedPage
+	async function handleClick(event) {
+		const selectedPage = event.target.dataset.value;
+		$pagination.current = selectedPage;
 
-        const body = buildBody($searchTerm, $resultsPerPage, $pagination.current)
-        console.log(body)
-        const res = await fetch('/api/elastic/search', body);
+		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current);
+		const res = await fetch('/api/elastic/search', body);
 		const result = await res.json();
-		console.log(result.hits.hits);
 		searchResults.set(result.hits.hits);
-        $totalHits = results.hits.total.value
-    }
+		$totalHits = result.hits.total.value;
+	}
 
-	$: pages = Array(Math.floor($totalHits / $resultsPerPage));
-	$: console.log($pagination);
+	$: pages = Array(Math.ceil($totalHits / $resultsPerPage));
 </script>
 
-<div class="btn-group">
-	{#each pages as page, index}
+<div class="flex justify-center">
+	<div class="btn-group">
+		<!-- FIXME make me uncheckable -->
 		<input
 			type="radio"
 			name="options"
-			data-title={index + 1}
+			data-title="First"
+			data-value="1"
 			class="btn"
-			checked={$pagination.current == index + 1 ? true : false}
-            on:click={handleClick}
+			on:click={handleClick}
 		/>
-	{/each}
+		{#each pages as page, index}
+			<input
+				type="radio"
+				name="options"
+				data-title={index + 1}
+				data-value={index + 1}
+				class="btn"
+				checked={$pagination.current == index + 1 ? true : false}
+				on:click={handleClick}
+			/>
+		{/each}
+		<!-- FIXME make me uncheckable -->
+		<input
+			type="radio"
+			name="options"
+			data-title="Last"
+			data-value={pages.length}
+			class="btn"
+			on:click={handleClick}
+		/>
+	</div>
 </div>

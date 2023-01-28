@@ -29,9 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"@appbaseio/searchbase": "^1.8.0",
 		"@elastic/elasticsearch": "^8.6.0",
-		"daisyui": "^2.47.0",
-		"simple-svelte-autocomplete": "^2.5.1"
+		"daisyui": "^2.47.0"
 	}
 }

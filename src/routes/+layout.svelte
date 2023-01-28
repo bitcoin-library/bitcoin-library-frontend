@@ -4,7 +4,7 @@
 
 <div class="navbar bg-base-100">
 	<div class="flex-1">
-		<a class="btn btn-ghost normal-case text-xl">BTC-Library</a>
+		<a class="btn btn-ghost normal-case text-xl">Bitcoin-Library</a>
 	</div>
 	<div class="flex-none gap-2">
 		<div class="dropdown dropdown-end">
