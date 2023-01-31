@@ -5,7 +5,6 @@
 	function toggleModal() {
 		modalOpen = !modalOpen
 	}
-	console.log(item)
 </script>
 
 <div class="card bg-base-100 shadow-xl m-4">
