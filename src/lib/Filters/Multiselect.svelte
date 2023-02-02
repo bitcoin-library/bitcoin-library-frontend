@@ -1,12 +1,6 @@
 <script>
 	let expanded = false;
-	export const property = {
-		name: 'Languages    ',
-		attributes: [
-			{ id: 0, value: 'de', checked: true },
-			{ id: 1, value: 'en', checked: true }
-		]
-	};
+	export let property;
 
 	$: console.log(property.attributes);
 </script>

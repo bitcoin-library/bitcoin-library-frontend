@@ -7,3 +7,16 @@ export const pagination = writable({
 })
 export const resultsPerPage = writable(12)
 export const totalHits = writable(0)
+
+
+// Filter stuff
+export const filters = writable([
+  {
+		name: 'Languages',
+		term: "language.keyword",
+		attributes: [
+			{ id: 0, value: 'de_DE', label: 'de', checked: false },
+			{ id: 1, value: 'en_EN', label: 'en', checked: false }
+		]
+	}
+])

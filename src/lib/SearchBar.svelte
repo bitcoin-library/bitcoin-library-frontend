@@ -1,11 +1,11 @@
 <script>
-	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits } from '$lib/stores';
+	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters } from '$lib/stores';
 	import { buildBody } from '$lib/elastic/helper';
 
 	let itemSelected = {_source: {title: ""}}
 
 	async function handleSearch() {
-		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current);
+		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
 		const res = await fetch('/api/elastic/search', body);
 		const result = await res.json();
 		result?.hits && searchResults.set(result.hits.hits);

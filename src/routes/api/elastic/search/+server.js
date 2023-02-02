@@ -4,7 +4,7 @@ import { json } from '@sveltejs/kit';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
-	const { searchTerm, size, from } = await request.json();
-	const esRes = await client.search(buildSearch(searchTerm, size, from));
+	const { searchTerm, size, from, filters } = await request.json();
+	const esRes = await client.search(buildSearch(searchTerm, size, from, filters));
 	return json(esRes);
 }

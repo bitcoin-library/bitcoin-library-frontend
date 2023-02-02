@@ -1,9 +1,9 @@
 <script>
 	import SearchBar from '$lib/SearchBar.svelte';
-	import { searchResults, totalHits } from '../lib/stores';
+	import { searchResults, totalHits, filters } from '../lib/stores';
 	import SearchResults from '$lib/SearchResults.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import Checkbox from '$lib/Filters/Checkbox.svelte';
+	import Multiselect from '$lib/Filters/Multiselect.svelte';
 
 	export let data;
 	searchResults.set(data.hits.hits)
@@ -15,7 +15,7 @@
 </div>
 <div class="container mx-auto px-4 flex flex-row">
 	<div class="basis-1/4 border px-4">
-		<Checkbox />
+		<Multiselect property={$filters.find(f => f.name === "Languages")} />
 	</div>
 	<div class="basis-3/4 border px-4">
 		<SearchResults />
