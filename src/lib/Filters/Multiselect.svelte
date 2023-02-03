@@ -1,8 +1,17 @@
 <script>
-	let expanded = false;
+	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters } from '$lib/stores';
+	import { buildBody } from '$lib/elastic/helper';
+
 	export let property;
 
-	$: console.log(property.attributes);
+	async function handleClick() {
+		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
+		const res = await fetch('/api/elastic/search', body);
+		const result = await res.json();
+		console.log(result);
+		result?.hits && searchResults.set(result.hits.hits);
+		$totalHits = result.hits.total.value;
+	}
 </script>
 
 <!-- svelte-ignore a11y-no-noninteractive-tabindex -->
@@ -16,6 +25,7 @@
 					type="checkbox"
 					checked={attribute.checked}
 					on:click={() => (attribute.checked = !attribute.checked)}
+					on:click={handleClick}
 					class="checkbox checkbox-sm"
 				/>
 				<span class="label-text px-2">{attribute.value}</span>

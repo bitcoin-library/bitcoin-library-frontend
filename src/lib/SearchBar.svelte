@@ -12,7 +12,6 @@
 		$totalHits = result.hits.total.value;
 	}
 	$: searchTerm.set(itemSelected?._source?.title)
-	$: console.log($searchTerm);
 </script>
 
 <form on:submit|preventDefault={handleSearch}>
