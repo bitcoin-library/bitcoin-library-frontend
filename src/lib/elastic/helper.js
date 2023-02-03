@@ -37,7 +37,6 @@ export const buildSearch = (searchTerm, size, from, filters) => {
 					})
 			}
 		});
-	console.log(filterTerms);
 	let query;
 	if (searchTerm === '' && !filterTerms.length) {
 		query = {
@@ -81,6 +80,5 @@ export const buildSearch = (searchTerm, size, from, filters) => {
 			track_total_hits: true
 		};
 	}
-	console.log(query);
 	return query;
 };
