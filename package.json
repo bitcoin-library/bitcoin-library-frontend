@@ -30,6 +30,7 @@
 	"type": "module",
 	"dependencies": {
 		"@elastic/elasticsearch": "^8.6.0",
-		"daisyui": "^2.47.0"
+		"daisyui": "^2.47.0",
+		"mongodb": "5.0"
 	}
 }
