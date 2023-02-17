@@ -9,4 +9,4 @@ export function start_mongo() {
 	return client.connect();
 }
 
-export default client.db('scrapy') // select database
+export default client.db('app') // select database

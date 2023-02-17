@@ -1,3 +1,5 @@
+import { PUBLIC_ES_INDEX } from '$env/static/public';
+
 export const buildBody = (searchTerm, resultsPerPage, currentPage, filters) => {
 	const body = {
 		method: 'POST',
@@ -15,32 +17,32 @@ export const buildBody = (searchTerm, resultsPerPage, currentPage, filters) => {
 };
 
 export const buildSearch = (searchTerm, size, from, filters) => {
-	const filterTerms = []
+	const filterTerms = [];
 	filters?.map((f) => {
 		// if all attributes are unchecked we add no filter term
 		if (!f.attributes.every((attr) => attr.checked === false)) {
-				const terms = [];
-				f.attributes
-					.filter((attr) => attr.checked)
-					.forEach((attr) => {
-						const term = {
-							term: {
-								[`${f.term}`]: `${attr.value}`
-							}
-						};
-						terms.push(term);
-					});
-					filterTerms.push({
-						bool: {
-							should: [...terms]
+			const terms = [];
+			f.attributes
+				.filter((attr) => attr.checked)
+				.forEach((attr) => {
+					const term = {
+						term: {
+							[`${f.term}`]: `${attr.value}`
 						}
-					})
-			}
-		});
+					};
+					terms.push(term);
+				});
+			filterTerms.push({
+				bool: {
+					should: [...terms]
+				}
+			});
+		}
+	});
 	let query;
 	if (searchTerm === '' && !filterTerms.length) {
 		query = {
-			index: 'mongo-data',
+			index: PUBLIC_ES_INDEX,
 			query: {
 				match_all: {}
 			},
@@ -50,7 +52,7 @@ export const buildSearch = (searchTerm, size, from, filters) => {
 		};
 	} else if (searchTerm === '' && filterTerms.length) {
 		query = {
-			index: 'mongo-data',
+			index: PUBLIC_ES_INDEX,
 			query: {
 				bool: {
 					filter: [...filterTerms]
@@ -62,14 +64,15 @@ export const buildSearch = (searchTerm, size, from, filters) => {
 		};
 	} else {
 		query = {
-			index: 'mongo-data',
+			index: PUBLIC_ES_INDEX,
 			query: {
 				bool: {
 					must: {
 						multi_match: {
 							query: searchTerm,
-							fields: ['title', 'description', 'full_text']
-							// fields: ['title', 'description']
+							type: 'bool_prefix',
+							fields: ['name', 'name._2gram', 'name._3gram', 'description', 'full_text']
+							// fields: ['name', 'description']
 						}
 					},
 					filter: [...filterTerms]

@@ -2,7 +2,7 @@
 	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters } from '$lib/stores';
 	import { buildBody } from '$lib/elastic/helper';
 
-	let itemSelected = {_source: {title: ""}}
+	let itemSelected = {_source: {name: ""}}
 
 	async function handleSearch() {
 		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
@@ -11,16 +11,16 @@
 		result?.hits && searchResults.set(result.hits.hits);
 		$totalHits = result.hits.total.value;
 	}
-	$: searchTerm.set(itemSelected?._source?.title)
+	$: searchTerm.set(itemSelected?._source?.name)
 </script>
 
-<form on:submit|preventDefault={handleSearch}>
+<form on:submit|preventDefault={handleSearch} class="w-1/3">
 	<div class="form-control">	
 		<div class="input-group">
 			<input
 				type="text"
 				placeholder="Search…"
-				class="input input-bordered"
+				class="input input-bordered w-full"
 				bind:value={$searchTerm}
 				on:change={handleSearch}
 				on:input={handleSearch}

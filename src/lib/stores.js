@@ -20,3 +20,7 @@ export const filters = writable([
 		]
 	}
 ])
+
+export const openSidebar = writable(false);
+export const openDetailbar = writable(false);
+export const selectedCard = writable({})

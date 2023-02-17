@@ -40,7 +40,7 @@
 		<input
 			type="text"
 			id="name"
-			name="title"
+			name="name"
 			placeholder="Type here"
 			class="input input-bordered w-full max-w-xs"
 		/>

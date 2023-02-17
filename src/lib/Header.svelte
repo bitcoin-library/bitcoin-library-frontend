@@ -1,5 +1,5 @@
 <script>
-    export let openSidebar = false;
+    import { openSidebar } from "$lib/stores";
 
 </script>
 
@@ -9,7 +9,7 @@
 	</div>
     
 	<div class="flex-none gap-2">
-        <button on:click={() => openSidebar = !openSidebar}>Open Sidebar</button>
+        <button on:click={() => $openSidebar = !$openSidebar}>Open Sidebar</button>
 		<div class="dropdown dropdown-end">
 			<label tabindex="0" class="btn btn-ghost btn-circle avatar">
 				<div class="w-10 rounded-full">
