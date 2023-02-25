@@ -3,7 +3,7 @@
 	import {
 		searchResults,
 		totalHits,
-		filters,
+		openFilterbar,
 		openSidebar,
 		openDetailbar,
 		selectedCard
@@ -13,13 +13,15 @@
 	import Multiselect from '$lib/Filters/Multiselect.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
 	import Header from '$lib/Header.svelte';
+	import Detailbar from '$lib/Detailbar.svelte';
 
-	import { fade, fly } from 'svelte/transition';
+	import Filterbar from '$lib/Filterbar.svelte';
+	import SearchSelector from '$lib/SearchSelector.svelte';
 
 	export let data;
 	searchResults.set(data.hits.hits);
 	$totalHits = data.hits.total.value;
-	$: console.log($selectedCard)
+	$: console.log($selectedCard);
 </script>
 
 <Header />
@@ -29,24 +31,26 @@
 	<div class="drawer-content">
 		<!-- Page content here -->
 
-		<div class="flex justify-center p-2">
+		<div class="flex flex-col items-center">
+			<SearchSelector />
 			<SearchBar />
+      {#if $openFilterbar}
+			<Filterbar />
+      {/if}
 		</div>
 		<div class="mx-auto px-4 flex flex-row">
-			<div class="basis-1/4 border px-4">
-				<Multiselect property={$filters.find((f) => f.name === 'Languages')} />
-			</div>
-			<div class="px-4 {$openDetailbar ? 'basis-2/4' : 'basis-3/4'}">
+			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-4/4'}">
 				<SearchResults />
 				<Pagination />
 			</div>
 			{#if $openDetailbar}
 				<div class="basis-1/4">
-					<button class="btn" 
+					<button
+						class="btn"
 						on:click={() => selectedCard.set({})}
-						on:click={() => ($openDetailbar = false)}
-						>Close</button>
-					<p>Detailbar</p>
+						on:click={() => ($openDetailbar = false)}>Close</button
+					>
+					<Detailbar item={$selectedCard} />
 				</div>
 			{/if}
 		</div>

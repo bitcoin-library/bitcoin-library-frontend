@@ -1,5 +1,5 @@
 <script>
-	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters } from '$lib/stores';
+	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters, openFilterbar } from '$lib/stores';
 	import { buildBody } from '$lib/elastic/helper';
 
 	let itemSelected = {_source: {name: ""}}
@@ -15,7 +15,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSearch} class="w-1/3">
-	<div class="form-control">	
+	<div class="form-control flex flex-row">	
 		<div class="input-group">
 			<input
 				type="text"
@@ -41,5 +41,6 @@
 				>
 			</button>
 		</div>
+		<button on:click={() => $openFilterbar = !$openFilterbar} class="btn ml-4">Filter</button>
 	</div>
 </form>
