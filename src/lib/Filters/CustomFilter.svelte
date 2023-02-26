@@ -8,8 +8,11 @@
 		filters
 	} from '$lib/stores';
 	import { buildBody } from '$lib/elastic/helper';
+	import { checkSquare, chevronDown } from 'svelte-awesome/icons'; // alternative, more efficient import
+	import Icon from 'svelte-awesome';
 
 	export let property;
+	export let activeFilter;
 
 	async function handleClick() {
 		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
@@ -19,46 +22,56 @@
 		result?.hits && searchResults.set(result.hits.hits);
 		$totalHits = result.hits.total.value;
 	}
-	let openFilter = false;
+
+	function reset(attributes) {
+		return attributes.map((e) => ({ ...e, checked: false }));
+	}
+
+	$: activeFilter = property.attributes.some((e) => e.checked === true);
+	$: console.log(activeFilter);
 </script>
 
 <div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<div
-		on:click={() => (openFilter = !openFilter)}
-		class="flex flex-row justify-between border border-base-300 bg-base-200 rounded p-2 hover:bg-base-100"
-	>
-		<span>{property.name}</span>
-		<button>></button>
-	</div>
-	{#if openFilter}
-		<div class="flex flex-col absolute z-10 bg-base-200 border-base-300 rounded p-2 w-1/5">
-			{#each property.attributes as attribute}
-				<label class="label cursor-pointer justify-start hover:bg-violet-600">
-					{#if !attribute.checked}
-						<input
-							type="checkbox"
-							on:click={() => (attribute.checked = !attribute.checked)}
-							checked
-							class="checkbox checkbox-sm"
-						/>
-					{:else}
-						<input
-							type="checkbox"
-							checked={attribute.checked}
-							on:click={() => (attribute.checked = !attribute.checked)}
-							on:click={handleClick}
-							class="checkbox checkbox-sm"
-							class:checkbox-warning={attribute.checked}
-						/>
-					{/if}
-
-					<span class="label-text px-2">{attribute.value}</span>
-				</label>
-			{/each}
-			<div>
-				<button class="btn">Reset</button>
+	<div class="dropdown">
+		<label class="btn m-1" tabindex="0">
+			<span class="px-4">{property.name}</span>
+			<div class="px-2" class:invisible={!activeFilter}>
+				<Icon style="color: orange" data={checkSquare} />
+			</div>
+			<Icon data={chevronDown} />
+		</label>
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<div
+			tabindex="0"
+			class="dropdown-content card card-compact w-64 p-2 shadow bg-primary text-primary-content"
+		>
+			<div class="form-control">
+				{#each property.attributes as attribute}
+					<!-- svelte-ignore a11y-label-has-associated-control -->
+					<label
+						on:click={() => (attribute.checked = !attribute.checked)}
+						on:click={() => handleClick()}
+						class="label cursor-pointer hover:bg-violet-600"
+					>
+						<span class="label-text px-2">{attribute.value}</span>
+						{#if attribute.checked}
+							<Icon style="color:orange" data={checkSquare} />
+						{:else}
+							<Icon style="color:grey" data={checkSquare} />
+						{/if}
+					</label>
+				{/each}
+				<div>
+					<button
+						class="btn"
+						on:click={() => {
+							property.attributes = reset(property.attributes);
+						}}
+						on:click={() => handleClick()}>Reset</button
+					>
+				</div>
 			</div>
 		</div>
-	{/if}
+	</div>
 </div>
