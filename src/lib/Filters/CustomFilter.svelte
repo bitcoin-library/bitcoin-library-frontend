@@ -28,7 +28,6 @@
 	}
 
 	$: activeFilter = property.attributes.some((e) => e.checked === true);
-	$: console.log(activeFilter);
 </script>
 
 <div>
@@ -49,9 +48,10 @@
 			<div class="form-control">
 				{#each property.attributes as attribute}
 					<!-- svelte-ignore a11y-label-has-associated-control -->
+					<!-- TODO handle click wieder einfügen -->
 					<label
 						on:click={() => (attribute.checked = !attribute.checked)}
-						on:click={() => handleClick()}
+					
 						class="label cursor-pointer hover:bg-violet-600"
 					>
 						<span class="label-text px-2">{attribute.value}</span>

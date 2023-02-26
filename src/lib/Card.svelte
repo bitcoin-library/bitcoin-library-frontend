@@ -19,7 +19,7 @@
 </script>
 <!-- TODO make flex column and assign space values -->
 <div
-	class="card bg-base-100 shadow-xl m-2 {$selectedCard == item ? bordered : ''}"
+	class="card bg-base-100 shadow-xl m-2 max-w-256 min-w-224 hover:border-2 hover:border-orange-500 {$selectedCard == item ? bordered : ''}"
 	on:click={() => $openDetailbar = true}
 	on:click={() => selectedCard.set(item)}
 >
@@ -30,7 +30,7 @@
 		<h2 class="card-title">
 			{item.name}
 		</h2>
-		<p>{shorten(item.description, 120)} [...]</p>
+		<!-- <p>{shorten(item.description, 120)} [...]</p> -->
 		<div class="card-actions justify-end">
 			<div class="badge badge-outline">foo</div>
 			<div class="badge badge-outline">bar</div>
