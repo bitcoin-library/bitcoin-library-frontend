@@ -23,16 +23,14 @@
 		$totalHits = result.hits.total.value;
 	}
 
-	function reset(attributes) {
-		return attributes.map((e) => ({ ...e, checked: false }));
-	}
-
 	$: activeFilter = property.attributes.some((e) => e.checked === true);
 </script>
 
 <div>
 	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div class="dropdown">
+		<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+		<!-- svelte-ignore a11y-label-has-associated-control -->
 		<label class="btn m-1" tabindex="0">
 			<span class="px-4">{property.name}</span>
 			<div class="px-2" class:invisible={!activeFilter}>
@@ -50,7 +48,7 @@
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<!-- TODO handle click wieder einfügen -->
 					<label
-						on:click={() => (attribute.checked = !attribute.checked)}
+						on:click={() => filters.checkFilter(property.id, attribute)}
 					
 						class="label cursor-pointer hover:bg-violet-600"
 					>
@@ -66,7 +64,7 @@
 					<button
 						class="btn"
 						on:click={() => {
-							property.attributes = reset(property.attributes);
+							filters.reset(property.id);
 						}}
 						on:click={() => handleClick()}>Reset</button
 					>

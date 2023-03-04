@@ -8,10 +8,9 @@ export const pagination = writable({
 export const resultsPerPage = writable(12)
 export const totalHits = writable(0)
 
-
-// Filter stuff
-export const filters = writable([
+const mockFilter = [
   {
+		id: "languages",
 		name: 'Languages',
 		term: "language.keyword",
 		attributes: [
@@ -20,6 +19,7 @@ export const filters = writable([
 		]
 	},
 	{
+		id: "category",
 		name: "Category",
 		term: "",
 		attributes: [
@@ -34,7 +34,43 @@ export const filters = writable([
 
 		]
 	}
-])
+]
+
+function createFilters() {
+	const { subscribe, set, update } = writable(mockFilter)
+
+	return {
+		subscribe,
+		set,
+		update,
+		reset: (id) => update(f => {
+			return f.map(filter => {
+				if (filter.id === id) {
+					const attributes = filter.attributes.map(e => ({...e, checked: false}))
+					return {...filter, attributes}
+				}
+				return filter
+			})
+		}),
+		checkFilter: (id, attribute) => update(f => {
+			return f.map(filter => {
+				if (filter.id === id) {
+					const attributes = filter.attributes.map(a => 
+						a.id === attribute.id
+						? {...a, checked: !a.checked}
+						: a
+						)
+					return {...filter, attributes}
+				}
+				return filter
+			})
+		})
+	}
+}
+
+
+// Filter stuff
+export const filters = createFilters()
 
 export const openSidebar = writable(false);
 export const openDetailbar = writable(false);
