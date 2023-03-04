@@ -48,7 +48,7 @@
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<!-- TODO handle click wieder einfügen -->
 					<label
-						on:click={() => filters.checkFilter(property.id, attribute)}
+						on:click={() => filters.toggleFilter(property.id, attribute)}
 					
 						class="label cursor-pointer hover:bg-violet-600"
 					>

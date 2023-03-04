@@ -1,16 +1,24 @@
 <script>
-	import { searchResults, totalHits } from '$lib/stores';
-	import Card from "$lib/Card.svelte"
+	import { searchResults, totalHits, filters } from '$lib/stores';
+	import Card from '$lib/Card.svelte';
 	import SearchResultsHeader from './SearchResultsHeader.svelte';
 	let results;
+	let checked = [];
 
 	searchResults.subscribe((res) => {
 		results = res;
 	});
+
+	$: checked = $filters.map((f) => f.attributes.filter((a) => a.checked)).flat();
 </script>
 
-<p>Total Hits: {$totalHits}</p>
-<SearchResultsHeader />
+<p>
+	<span class="font-semibold">{$totalHits}</span> hits
+	{#if checked.length}
+		for <SearchResultsHeader bind:checked/>
+	{/if}
+</p>
+
 <div class="grid grid-cols-results justify-center items-start">
 	{#if results.length}
 		{#each results as result}

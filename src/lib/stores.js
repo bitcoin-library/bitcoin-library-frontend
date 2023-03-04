@@ -43,6 +43,7 @@ function createFilters() {
 		subscribe,
 		set,
 		update,
+		resetAll: () => set(mockFilter),
 		reset: (id) => update(f => {
 			return f.map(filter => {
 				if (filter.id === id) {
@@ -52,7 +53,7 @@ function createFilters() {
 				return filter
 			})
 		}),
-		checkFilter: (id, attribute) => update(f => {
+		toggleFilter: (id, attribute) => update(f => {
 			return f.map(filter => {
 				if (filter.id === id) {
 					const attributes = filter.attributes.map(a => 

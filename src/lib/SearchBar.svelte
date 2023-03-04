@@ -1,8 +1,18 @@
 <script>
-	import { searchTerm, searchResults, resultsPerPage, pagination, totalHits, filters, openFilterbar } from '$lib/stores';
 	import { buildBody } from '$lib/elastic/helper';
+	import {
+		filters,
+		openFilterbar,
+		pagination,
+		resultsPerPage,
+		searchResults,
+		searchTerm,
+		totalHits
+	} from '$lib/stores';
+	import Icon from 'svelte-awesome';
+	import { close, filter } from 'svelte-awesome/icons';
 
-	let itemSelected = {_source: {name: ""}}
+	let itemSelected = { _source: { name: '' } };
 
 	async function handleSearch() {
 		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
@@ -11,11 +21,11 @@
 		result?.hits && searchResults.set(result.hits.hits);
 		$totalHits = result.hits.total.value;
 	}
-	$: searchTerm.set(itemSelected?._source?.name)
+	$: searchTerm.set(itemSelected?._source?.name);
 </script>
 
 <form on:submit|preventDefault={handleSearch} class="w-1/3">
-	<div class="form-control flex flex-row">	
+	<div class="form-control flex flex-row">
 		<div class="input-group">
 			<input
 				type="text"
@@ -41,6 +51,13 @@
 				>
 			</button>
 		</div>
-		<button on:click={() => $openFilterbar = !$openFilterbar} class="btn ml-4">Filter</button>
+		<button on:click={() => ($openFilterbar = !$openFilterbar)} class="btn ml-4">
+			<span>Filter</span>
+			{#if $openFilterbar}
+			<Icon class="swap-off ml-1" data={close} />
+			{:else}
+			<Icon class="swap-on ml-1" data={filter} />
+			{/if}
+		</button>
 	</div>
 </form>
