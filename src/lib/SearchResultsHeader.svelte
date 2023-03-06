@@ -10,7 +10,7 @@
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<div
 				on:click={() => filters.toggleFilter(filter.id, attribute)}
-				class=" cursor-pointer badge badge-warning gap-2 mx-1"
+				class="cursor-pointer badge badge-warning gap-2 mx-1"
 			>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

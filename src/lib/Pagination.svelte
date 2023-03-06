@@ -18,7 +18,7 @@
 	$: pages = Array(Math.ceil($totalHits / $resultsPerPage));
 </script>
 
-<div class="flex justify-center">
+<div class="flex justify-center m-3">
 	<div class="btn-group">
 		<!-- FIXME make me uncheckable -->
 		<input

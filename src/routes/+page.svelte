@@ -10,7 +10,6 @@
 	} from '../lib/stores';
 	import SearchResults from '$lib/SearchResults.svelte';
 	import Pagination from '$lib/Pagination.svelte';
-	import Multiselect from '$lib/Filters/Multiselect.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
@@ -34,26 +33,26 @@
 		<div class="flex flex-col items-center">
 			<SearchSelector />
 			<SearchBar />
-      {#if $openFilterbar}
-			<Filterbar />
-      {/if}
-		</div>
-		<div class="mx-auto px-4 flex flex-row">
-			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-4/4'}">
-				<SearchResults />
-				<Pagination />
-			</div>
-			{#if $openDetailbar}
-				<div class="basis-1/4">
-					<button
-						class="btn"
-						on:click={() => selectedCard.set({})}
-						on:click={() => ($openDetailbar = false)}>Close</button
-					>
-					<Detailbar item={$selectedCard} />
-				</div>
+			{#if $openFilterbar}
+				<Filterbar />
 			{/if}
 		</div>
+		<div class="mx-auto px-4 flex flex-row">
+			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-full'}">
+				<SearchResults />
+			</div>
+				{#if $openDetailbar}
+					<div class="">
+						<button
+							class="btn"
+							on:click={() => selectedCard.set({})}
+							on:click={() => ($openDetailbar = false)}>Close</button
+						>
+						<Detailbar item={$selectedCard} />
+					</div>
+				{/if}
+		</div>
+		<Pagination />
 	</div>
 
 	<Sidebar />

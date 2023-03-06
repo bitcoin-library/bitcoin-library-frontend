@@ -19,7 +19,7 @@
 	{/if}
 </p>
 
-<div class="grid grid-cols-results justify-center items-start">
+<div class="grid grid-cols-results gap-2 justify-center items-start">
 	{#if results.length}
 		{#each results as result}
 			<Card item={result._source} />
