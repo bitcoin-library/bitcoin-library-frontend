@@ -26,7 +26,12 @@
 <Header />
 
 <div class="drawer drawer-end">
-	<input id="sidebar" type="checkbox" class="drawer-toggle" bind:checked={$openSidebar} />
+	<input
+		id="sidebar"
+		type="checkbox"
+		class="drawer-toggle"
+		bind:checked={$openSidebar}
+	/>
 	<div class="drawer-content">
 		<!-- Page content here -->
 
@@ -37,20 +42,20 @@
 				<Filterbar />
 			{/if}
 		</div>
-		<div class="mx-auto px-4 flex flex-row">
+		<div class="mx-auto w-2/3 flex flex-row px-4">
 			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-full'}">
 				<SearchResults />
 			</div>
-				{#if $openDetailbar}
-					<div class="">
-						<button
-							class="btn"
-							on:click={() => selectedCard.set({})}
-							on:click={() => ($openDetailbar = false)}>Close</button
-						>
-						<Detailbar item={$selectedCard} />
-					</div>
-				{/if}
+			{#if $openDetailbar}
+				<div class="">
+					<button
+						class="btn"
+						on:click={() => selectedCard.set({})}
+						on:click={() => ($openDetailbar = false)}>Close</button
+					>
+					<Detailbar item={$selectedCard} />
+				</div>
+			{/if}
 		</div>
 		<Pagination />
 	</div>

@@ -31,5 +31,5 @@
 {/each}
 
 {#if checked && checked.length}
-	<span class="cursor-pointer ml-2 btn btn-xs" on:click={filters.resetAll}>Remove all filters</span>
+	<button class="cursor-pointer ml-2 btn btn-xs" on:click={filters.resetAll}>Remove all filters</button>
 {/if}

@@ -24,7 +24,7 @@
 	$: searchTerm.set(itemSelected?._source?.name);
 </script>
 
-<form on:submit|preventDefault={handleSearch} class="w-1/3">
+<form on:submit|preventDefault={handleSearch} class="">
 	<div class="form-control flex flex-row">
 		<div class="input-group">
 			<input

@@ -12,14 +12,14 @@
 	$: checked = $filters.map((f) => f.attributes.filter((a) => a.checked)).flat();
 </script>
 
-<p>
+<p class="mb-4">
 	<span class="font-semibold">{$totalHits}</span> hits
 	{#if checked.length}
 		for <SearchResultsHeader bind:checked/>
 	{/if}
 </p>
 
-<div class="grid grid-cols-results gap-2 justify-center items-start">
+<div class="flex flex-wrap justify-center gap-2">
 	{#if results.length}
 		{#each results as result}
 			<Card item={result._source} />
