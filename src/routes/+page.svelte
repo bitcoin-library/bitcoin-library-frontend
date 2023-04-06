@@ -7,8 +7,6 @@
 		selectedCard
 	} from '../lib/stores';
 	import SearchResults from '$lib/Search/SearchResults.svelte';
-	import Pagination from '$lib/Pagination.svelte';
-	import Sidebar from '$lib/Sidebar.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
 
