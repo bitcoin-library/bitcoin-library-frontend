@@ -1,9 +1,7 @@
 <script>
-	import SearchBar from '$lib/Search/SearchBar.svelte';
 	import {
 		searchResults,
 		totalHits,
-		openFilterbar,
 		openSidebar,
 		openDetailbar,
 		selectedCard
@@ -14,20 +12,15 @@
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
 
-	import Filterbar from '$lib/Search/Filterbar.svelte';
-	import SearchSelector from '$lib/Search/SearchSelector.svelte';
-
-	import SearchHeader from '$lib/Search/SearchHeader.svelte';
-
 	export let data;
 
-		// TODO remove later
-	const fakeHits = []
+	// TODO remove later
+	const fakeHits = [];
 	for (let i = 0; i < 100; i++) {
-		fakeHits.push(data.hits[0])
+		fakeHits.push(data.hits[0]);
 	}
 
-	searchResults.set(fakeHits);
+	searchResults.set(data.hits);
 	$totalHits = data.estimatedTotalHits;
 	$: console.log($searchResults);
 </script>
@@ -43,13 +36,12 @@
 	/>
 	<div class="drawer-content">
 		<!-- Page content here -->
-		<div class="mx-auto flex flex-row px-4">
-			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-full'}">
+		<div class="flex flex-row">
+			<div class={$openDetailbar ? 'basis-2/3' : 'basis-full'}>
 				<SearchResults />
 			</div>
 			{#if $openDetailbar}
 				<div class="">
-					
 					<Detailbar item={$selectedCard} />
 				</div>
 			{/if}
