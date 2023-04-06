@@ -13,12 +13,13 @@
 		if (str.length <= maxLen) return str;
 		return str.substr(0, str.lastIndexOf(separator, maxLen));
 	}
+	$: console.log(item)
 </script>
 
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="card card-compact relative m-2 h-112 w-96  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="card card-compact relative m-2 h-112 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
@@ -30,7 +31,7 @@
 	<figure>
 		<img
 			class="h-48 object-cover p-4"
-			src={item.thumbnail || './images/Bitcoin.png'}
+			src={item.image || './images/Bitcoin.png'}
 			alt="Here could be your image"
 		/>
 	</figure>

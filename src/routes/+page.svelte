@@ -1,5 +1,5 @@
 <script>
-	import SearchBar from '$lib/SearchBar.svelte';
+	import SearchBar from '$lib/Search/SearchBar.svelte';
 	import {
 		searchResults,
 		totalHits,
@@ -8,19 +8,28 @@
 		openDetailbar,
 		selectedCard
 	} from '../lib/stores';
-	import SearchResults from '$lib/SearchResults.svelte';
+	import SearchResults from '$lib/Search/SearchResults.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	import Sidebar from '$lib/Sidebar.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
 
-	import Filterbar from '$lib/Filterbar.svelte';
-	import SearchSelector from '$lib/SearchSelector.svelte';
+	import Filterbar from '$lib/Search/Filterbar.svelte';
+	import SearchSelector from '$lib/Search/SearchSelector.svelte';
+
+	import SearchHeader from '$lib/Search/SearchHeader.svelte';
 
 	export let data;
-	searchResults.set(data.hits.hits);
-	$totalHits = data.hits.total.value;
-	$: console.log($selectedCard);
+
+		// TODO remove later
+	const fakeHits = []
+	for (let i = 0; i < 100; i++) {
+		fakeHits.push(data.hits[0])
+	}
+
+	searchResults.set(fakeHits);
+	$totalHits = data.estimatedTotalHits;
+	$: console.log($searchResults);
 </script>
 
 <Header />
@@ -34,25 +43,13 @@
 	/>
 	<div class="drawer-content">
 		<!-- Page content here -->
-
-		<div class="flex flex-col items-center">
-			<SearchSelector />
-			<SearchBar />
-			{#if $openFilterbar}
-				<Filterbar />
-			{/if}
-		</div>
-		<div class="mx-auto w-2/3 flex flex-row px-4">
+		<div class="mx-auto flex flex-row px-4">
 			<div class="px-4 {$openDetailbar ? 'basis-3/4' : 'basis-full'}">
 				<SearchResults />
 			</div>
 			{#if $openDetailbar}
 				<div class="">
-					<button
-						class="btn"
-						on:click={() => selectedCard.set({})}
-						on:click={() => ($openDetailbar = false)}>Close</button
-					>
+					
 					<Detailbar item={$selectedCard} />
 				</div>
 			{/if}

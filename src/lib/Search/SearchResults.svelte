@@ -22,7 +22,7 @@
 <div class="flex flex-wrap justify-center gap-2">
 	{#if results.length}
 		{#each results as result}
-			<Card item={result._source} />
+			<Card item={result} />
 		{/each}
 	{:else}
 		<div>No Results</div>
