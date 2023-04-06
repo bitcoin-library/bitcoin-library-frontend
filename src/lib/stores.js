@@ -76,4 +76,6 @@ export const filters = createFilters()
 export const openSidebar = writable(false);
 export const openDetailbar = writable(false);
 export const openFilterbar = writable(false);
-export const selectedCard = writable({})
+export const selectedCard = writable({
+	keywords: [],
+})
