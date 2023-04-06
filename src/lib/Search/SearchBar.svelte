@@ -15,11 +15,11 @@
 	let itemSelected = { _source: { name: '' } };
 
 	async function handleSearch() {
-		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
-		const res = await fetch('/api/elastic/search', body);
-		const result = await res.json();
-		result?.hits && searchResults.set(result.hits.hits);
-		$totalHits = result.hits.total.value;
+		// const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
+		// const res = await fetch('/api/elastic/search', body);
+		// const result = await res.json();
+		// result?.hits && searchResults.set(result.hits.hits);
+		// $totalHits = result.hits.total.value;
 	}
 	$: searchTerm.set(itemSelected?._source?.name);
 </script>

@@ -16,44 +16,30 @@
 
 	// TODO remove later
 	const fakeHits = [];
-	for (let i = 0; i < 100; i++) {
+	for (let i = 0; i < 10; i++) {
 		fakeHits.push(data.hits[0]);
 	}
 
-	searchResults.set(data.hits);
+	searchResults.set(fakeHits);
 	$totalHits = data.estimatedTotalHits;
-	$: console.log($searchResults);
+	$: console.log($openDetailbar);
 </script>
 
-<Header />
-
-<div class="drawer drawer-end">
-	<input
-		id="sidebar"
-		type="checkbox"
-		class="drawer-toggle"
-		bind:checked={$openSidebar}
-	/>
-	<div class="drawer-content">
-		<!-- Page content here -->
-		<div class="flex flex-row">
-			<div class={$openDetailbar ? 'basis-2/3' : 'basis-full'}>
-				<SearchResults />
-			</div>
-			{#if $openDetailbar}
-				<div class="">
-					<Detailbar item={$selectedCard} />
-				</div>
-			{/if}
+<div class="">
+	<Header />
+	<div class="flex">
+		<div class="{$openDetailbar ? 'basis-2/3' : 'basis-full'}">
+			<SearchResults />
 		</div>
-		<Pagination />
+		{#if $openDetailbar}
+			<div class="basis-1/3">
+				<Detailbar item={$selectedCard} />
+			</div>
+		{/if}
 	</div>
-
-	<Sidebar />
 </div>
 
 <style lang="postcss">
 	:global(html) {
-		background-color: theme(colors.gray.100);
 	}
 </style>

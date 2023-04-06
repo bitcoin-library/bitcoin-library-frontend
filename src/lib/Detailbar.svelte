@@ -8,11 +8,14 @@
 	$: console.log(item);
 </script>
 
-<div class="fixed mr-4 mb-4 flex-col">
-	<div class="flex items-center">
+<div class="sticky top-0 mr-4 mb-4 h-screen overflow-clip">
+	<div class="flex">
 		<button
 			class="btn-circle btn ml-auto mb-4"
-			on:click={() => selectedCard.set({})}
+			on:click={() =>
+				selectedCard.set({
+					keywords: []
+				})}
 			on:click={() => ($openDetailbar = false)}
 		>
 			<svg
@@ -45,6 +48,4 @@
 	<h1 class="text-xl font-bold">{item.name}</h1>
 
 	<p>{item.description}</p>
-
-	
 </div>

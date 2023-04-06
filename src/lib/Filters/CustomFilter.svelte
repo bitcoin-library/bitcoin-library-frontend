@@ -1,13 +1,8 @@
 <script>
 	import {
-		searchTerm,
-		searchResults,
-		resultsPerPage,
-		pagination,
-		totalHits,
 		filters
 	} from '$lib/stores';
-	import { buildBody } from '$lib/elastic/helper';
+	// import { buildBody } from '$lib/elastic/helper';
 	import { checkSquare, chevronDown } from 'svelte-awesome/icons'; // alternative, more efficient import
 	import Icon from 'svelte-awesome';
 
@@ -15,12 +10,12 @@
 	export let activeFilter;
 
 	async function handleClick() {
-		const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
-		const res = await fetch('/api/elastic/search', body);
-		const result = await res.json();
-		console.log(result);
-		result?.hits && searchResults.set(result.hits.hits);
-		$totalHits = result.hits.total.value;
+		// const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
+		// const res = await fetch('/api/elastic/search', body);
+		// const result = await res.json();
+		// console.log(result);
+		// result?.hits && searchResults.set(result.hits.hits);
+		// $totalHits = result.hits.total.value;
 	}
 
 	$: activeFilter = property.attributes.some((e) => e.checked === true);

@@ -13,7 +13,7 @@
 		if (str.length <= maxLen) return str;
 		return str.substr(0, str.lastIndexOf(separator, maxLen));
 	}
-	$: console.log(item)
+	// $: console.log(item)
 </script>
 
 <!-- TODO make flex column and assign space values -->

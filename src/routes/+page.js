@@ -23,6 +23,6 @@ export async function load({ fetch }) {
 	// Meilisearch is typo-tolerant:
 	const index = client.index('nostr_notes');
 	const res = await index.search('');
-	console.log(res);
+	// console.log(res);
 	return res;
 }

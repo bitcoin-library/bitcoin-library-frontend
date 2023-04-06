@@ -2,6 +2,7 @@
 	import { searchResults, totalHits, filters } from '$lib/stores';
 	import Card from '$lib/Card.svelte';
 	import SearchResultsHeader from './SearchResultsHeader.svelte';
+	import Pagination from '$lib/Pagination.svelte';
 	let results;
 	let checked = [];
 
@@ -28,3 +29,5 @@
 		<div>No Results</div>
 	{/if}
 </div>
+
+<Pagination />
