@@ -12,22 +12,23 @@
 
 	$: checked = $filters.map((f) => f.attributes.filter((a) => a.checked)).flat();
 </script>
-
-<p class="mb-4">
-	<span class="font-semibold">{$totalHits}</span> hits
-	{#if checked.length}
-		for <SearchResultsHeader bind:checked/>
-	{/if}
-</p>
-
-<div class="flex flex-wrap justify-center gap-2">
-	{#if results.length}
-		{#each results as result}
-			<Card item={result} />
-		{/each}
-	{:else}
-		<div>No Results</div>
-	{/if}
+<div class="h-screen overflow-auto no-scrollbar">
+	<p class="mb-4">
+		<span class="font-semibold">{$totalHits}</span> hits
+		{#if checked.length}
+			for <SearchResultsHeader bind:checked/>
+		{/if}
+	</p>
+	
+	<div class="flex flex-wrap justify-center gap-2">
+		{#if results.length}
+			{#each results as result}
+				<Card item={result} />
+			{/each}
+		{:else}
+			<div>No Results</div>
+		{/if}
+	</div>
+	
+	<Pagination />
 </div>
-
-<Pagination />

@@ -8,7 +8,7 @@
 	$: console.log(item);
 </script>
 
-<div class="sticky top-0 mr-4 mb-4 h-screen overflow-clip">
+<div class="sticky top-0 mr-4 mb-4 h-screen overflow-auto no-scrollbar">
 	<div class="flex">
 		<button
 			class="btn-circle btn ml-auto mb-4"

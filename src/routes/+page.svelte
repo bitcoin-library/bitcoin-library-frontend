@@ -2,7 +2,6 @@
 	import {
 		searchResults,
 		totalHits,
-		openSidebar,
 		openDetailbar,
 		selectedCard
 	} from '../lib/stores';
