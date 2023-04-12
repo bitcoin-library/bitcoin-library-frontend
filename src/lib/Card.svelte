@@ -1,5 +1,6 @@
 <script>
 	import { openDetailbar, selectedCard } from '$lib/stores';
+	import Tags from './Resource/Tags.svelte';
 
 	export let item;
 	let modalOpen = false;
@@ -9,7 +10,7 @@
 	}
 
 	// Shorten a string to less than maxLen characters without truncating words.
-	function shorten(str="", maxLen, separator = ' ') {
+	function shorten(str = '', maxLen, separator = ' ') {
 		if (str.length <= maxLen) return str;
 		return str.substr(0, str.lastIndexOf(separator, maxLen));
 	}
@@ -19,15 +20,17 @@
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="card card-compact relative m-2 h-112 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card card-compact relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
 	on:click={() => ($openDetailbar = true)}
 	on:click={() => selectedCard.set(item)}
 >
-	<!-- svelte-ignore a11y-img-redundant-alt -->
-	<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
+	<!-- only display if item.last updated is not older than a week  -->
+	{#if item.updated_at > Date.now() - 86400000}
+		<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
+	{/if}
 	<figure>
 		<img
 			class="h-48 object-cover p-4"
@@ -36,9 +39,8 @@
 		/>
 	</figure>
 	<div class="card-body">
-		<div class="card-actions justify-end">
-			<div class="badge-outline badge">foo</div>
-			<div class="badge-outline badge">bar</div>
+		<div class="justify-end">
+			<Tags properties={item.keywords} />
 		</div>
 		<h2 class="card-title">
 			{item.name}

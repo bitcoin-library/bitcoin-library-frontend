@@ -1,20 +1,10 @@
 <script>
 	import { openDetailbar, selectedCard } from '$lib/stores';
+	import Tags from './Resource/Tags.svelte';
 
 	export let item = {
 		keywords: []
 	};
-
-	// calculate proportion of total events that set this attribute
-	// $: proportion = Math.round((item.count / $totalHits) * 100);
-	function calcProportion(arr, item) {
-		// sort an array of objects by the lenght of their 'addedByEvent' array
-		arr.sort((a, b) => b.addedByEvent.length - a.addedByEvent.length);
-		const proportion = Math.round((item.addedByEvent.length / arr[0].addedByEvent.length) * 100);
-		console.log(`opacity-[.${proportion}]`)
-		return `opacity-[.${proportion}]`
-
-	}
 
 	$: console.log(item);
 </script>
@@ -47,14 +37,12 @@
 
 	<img class="object-contain" src={item.image} alt="" />
 
-	<div class="block">
+	<div class="block mb-2">
 		<a href={item.uri} target="_blank" rel="noreferrer" class="btn">Öffnen</a>
 		<button class="btn">Link Kopieren</button>
 	</div>
 
-	{#each item.keywords as keyword}
-		<span class="badge-warning badge badge-lg m-2 {calcProportion(item.keywords, keyword)}">{keyword.title}</span>
-	{/each}
+	<Tags properties={item.keywords} />
 
 	<h1 class="text-xl font-bold">{item.name}</h1>
 

@@ -13,7 +13,7 @@
 
 	// TODO remove later
 	const fakeHits = [];
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 1; i++) {
 		fakeHits.push(data.hits[0]);
 	}
 
