@@ -13,7 +13,8 @@
 		// return `opacity-[.${proportion}]`;
 		return opacity;
 	}
-	$: longestArray = properties.sort(
+	$: console.log(properties);
+	$: longestArray = properties[0]?.addedByEvent && properties.sort(
 		(a, b) => b.addedByEvent.length - a.addedByEvent.length
 	)[0].addedByEvent;
 </script>
