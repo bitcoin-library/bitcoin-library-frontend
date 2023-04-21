@@ -8,21 +8,22 @@
 		const proportion = Math.round(
 			(item.addedByEvent.length / arr[0].addedByEvent.length) * 100
 		);
-		const opacity = `opacity-[.${proportion - 1}]`;
-		return opacity;
+		return proportion;
 	}
 	$: longestArray = properties[0]?.addedByEvent && properties.sort(
 		(a, b) => b.addedByEvent.length - a.addedByEvent.length
 	)[0].addedByEvent;
 </script>
 
-{#each properties as prop}
-	<div class="tooltip" data-tip="This prop was selected {prop.addedByEvent.length} out of {longestArray.length} times.">
-		<span
-			class="badge-warning badge m-1 {calcProportion(
+<div>
+	{#each properties as prop}
+		<div class="tooltip" data-tip="Selected {prop.addedByEvent.length} out of {longestArray.length} times.">
+			<span style="opacity: {calcProportion(
 				properties,
 				prop
-			)}">{prop.title}</span
-		>
-	</div>
-{/each}
+			)}%;"
+				class="badge-warning badge m-1">{prop.title}</span
+			>
+		</div>
+	{/each}
+</div>

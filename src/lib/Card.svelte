@@ -49,11 +49,5 @@
 		</h2>
 		<p>{shorten(item.description, 120)} [...]</p>
 
-		<!-- Author -->
-		<Authors authors={item.authors} />
-
-		<!-- Metadata Contributors -->
-		<MetadataContributors metadataContributors={item.metadataContributors} />
-		
 	</div>
 </div>

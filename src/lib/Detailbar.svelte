@@ -1,5 +1,6 @@
 <script>
 	import { openDetailbar, selectedCard } from '$lib/stores';
+	import Authors from '$lib/Resource/Authors.svelte';
 	import Tags from './Resource/Tags.svelte';
 
 	export let item = {
@@ -9,7 +10,7 @@
 	$: console.log(item);
 </script>
 
-<div class="sticky top-0 mr-4 mb-4 h-screen overflow-auto no-scrollbar">
+<div class="no-scrollbar sticky top-0 pl-12 mr-4 mb-4 h-screen overflow-auto">
 	<div class="flex">
 		<button
 			class="btn-circle btn ml-auto mb-4"
@@ -37,14 +38,22 @@
 
 	<img class="object-contain" src={item.image} alt="" />
 
-	<div class="block mb-2">
+	<div class="mb-3 mt-3 block">
 		<a href={item.uri} target="_blank" rel="noreferrer" class="btn">Öffnen</a>
 		<button class="btn">Link Kopieren</button>
 	</div>
 
 	<Tags properties={item.keywords} />
+	
+	<div class="mt-3">
+		<Tags properties={item.resourceType} />
+	</div>
 
-	<h1 class="text-xl font-bold">{item.name}</h1>
+	<h1 class="mt-3 text-xl font-bold">{item.name}</h1>
 
-	<p>{item.description}</p>
+	<p class="mt-5 mb-5">{item.description}</p>
+
+	<Authors authors={item.authors} title="Authors:" />
+
+	<Authors authors={item.metadataContributors} title="Contributors:" />
 </div>
