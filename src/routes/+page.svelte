@@ -11,13 +11,12 @@
 
 	export let data;
 
-	// TODO remove later
-	const fakeHits = [];
-	for (let i = 0; i < 1; i++) {
-		fakeHits.push(data.hits[0]);
-	}
-
-	searchResults.set(fakeHits);
+	// // TODO remove later
+	// const fakeHits = [];
+	// for (let i = 0; i < 1; i++) {
+	// 	fakeHits.push(data.hits[0]);
+	// }
+	searchResults.set(data.hits);
 	$totalHits = data.estimatedTotalHits;
 	$: console.log($openDetailbar);
 </script>

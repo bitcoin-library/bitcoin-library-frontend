@@ -11,10 +11,16 @@
 	} from '$lib/stores';
 	import Icon from 'svelte-awesome';
 	import { close, filter } from 'svelte-awesome/icons';
+	import { index } from "$lib/meili/index";
 
 	let itemSelected = { _source: { name: '' } };
 
 	async function handleSearch() {
+		const search = await index.search($searchTerm, {
+			filter: [["authorsAsStrings = 'Anita Posch'"]]
+		});
+		console.log(search)
+		searchResults.set(search.hits);
 		// const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
 		// const res = await fetch('/api/elastic/search', body);
 		// const result = await res.json();
