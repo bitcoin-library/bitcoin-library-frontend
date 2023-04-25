@@ -1,38 +1,44 @@
-# create-svelte
+# Bitcoin Library Frontend
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+This is the frontend for the Bitcoin-Library project.
+the idea is to establish a community driven library of bitcoin related content based on the [Nostr protocol](https://nostr.com/).
 
-## Creating a project
+Together with the [Bitcoin Library Browser Extension](https://github.com/bitcoin-library/browser-extension) people can easily add content to the library in form of Nostr events.
+These events get parsed by a note fetcher and are then send to the backend to make them available for search.
 
-If you're seeing this, you've probably already done this step. Congrats!
+Since everything is based on Nostr and sent to relays also other services could easily make use of the data.
+
+![Screenshot](./docs/media/sample_screenshot.png)
+
+## Metadata Scheme of Notes
+
+The metadata of the resources is stored as an `tag` in the Nostr event.
+
+...TODO describe the metadata scheme...
+
+## Usage
+
+Copy the `.env.example` file to `.env` and fill in the values.
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
+cp .env.example .env
 ```
 
-## Developing
+Install the dependencies
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+```bash
+npm install
+```
+
+
+## Development
+
+Start the development server
 
 ```bash
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
 
-## Building
+## Tasks
 
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- [ ] Completely remove elastic and mongo stuff and fully switch to meilisearch
