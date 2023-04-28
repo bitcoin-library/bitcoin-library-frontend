@@ -10,15 +10,16 @@
 	$: console.log(item);
 </script>
 
-<div class="no-scrollbar sticky top-0 pl-12 mr-4 mb-4 h-screen overflow-auto">
+<div class="no-scrollbar sticky top-0 mr-4 mb-4 h-screen overflow-auto pl-12">
 	<div class="flex">
 		<button
 			class="btn-circle btn ml-auto mb-4"
-			on:click={() =>
+			on:click={() => {
 				selectedCard.set({
 					keywords: []
-				})}
-			on:click={() => ($openDetailbar = false)}
+				});
+				$openDetailbar = false;
+			}}
 		>
 			<svg
 				xmlns="http://www.w3.org/2000/svg"
@@ -44,7 +45,7 @@
 	</div>
 
 	<Tags properties={item.keywords} />
-	
+
 	<div class="mt-3">
 		<Tags properties={item.resourceType} />
 	</div>
