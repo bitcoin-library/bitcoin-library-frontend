@@ -1,0 +1,37 @@
+[
+  {
+    "title": "Artikel",
+    "sk": "2a2f92a5097de05ab338201ff276c9b5aa95d31b9d1d73a4097f99035ca8b70b",
+    "pk": "e056f7d45e64afd52274b04234f389c1a65866dd158d31c652ea6665e54e881c",
+    "id": "https://w3id.org/bitcoin-library/bots/f631971e-ee83-4c95-9fcf-b1c1639bb4f6",
+    "npub": "npub1upt004z7vjha2gn5kpprfuufcxn9sekazkxnr3jjafnxte2w3qwqxnfmar"
+  },
+  {
+    "title": "Buch",
+    "sk": "ad113489ad9d61661bca3228543261757dc1590aa53d43b59f06833cc2bd1b9b",
+    "pk": "bdaeffd2d007ad47868cf5c6c89df3a7f4ff959d57aece8a9dae416494e5ca87",
+    "id": "https://w3id.org/bitcoin-library/bots/818a0f8b-ef88-4630-a0e3-4150667b2ebc",
+    "npub": "npub1hkh0l5ksq7k50p5v7hrv380n5l60l9va27hvaz5a4eqkf989e2rs8j0esg"
+  },
+  {
+    "title": "Podcast",
+    "sk": "30dac5d800307fc93d458f671af530ded637b8dc757fd0fbddcf6d510af8afce",
+    "pk": "db9d621237f99e82accb13ea5c924bf657aba0e92e396003df7b1d984107d591",
+    "id": "https://w3id.org/bitcoin-library/bots/16975a1d-f6e2-48fe-af90-d89635494a6e",
+    "npub": "npub1mwwkyy3hlx0g9txtz049eyjt7et6hg8f9cukqq7l0vwessg86kgsxd3764"
+  },
+  {
+    "title": "Tutorial",
+    "sk": "848b5ccc27de6bf7a378b40522241b9b308498c6c2f5b7e9c0e0c8f06ac41e1c",
+    "pk": "804340f13cf5ace64bc0e78bf43b0ec39dab5c8c7401bc65f17c4ab75b05d53e",
+    "id": "https://w3id.org/bitcoin-library/bots/153ac02f-9423-4b2a-94e2-19ba25e5ab4e",
+    "npub": "npub1spp5pufu7kkwvj7qu79lgwcwcww6khyvwsqmce03039twkc965lq4raqts"
+  },
+  {
+    "title": "Video",
+    "sk": "f5c933d0dad0e409b44bc1055604de312c1158a3d6248057f921dcaead5524be",
+    "pk": "d9a3412c9234ea3ac6057241a2a33421924dc8dd1ce745b85b89d8aebeee3af7",
+    "id": "https://w3id.org/bitcoin-library/bots/b6d8ffc6-b857-442f-bf4c-036b53ac6182",
+    "npub": "npub1mx35ztyjxn4r43s9wfq69ge5yxfymjxarnn5twzm38v2a0hw8tmsr63lpk"
+  }
+]

@@ -1,4 +1,5 @@
 import { writable } from "svelte/store";
+import keywords from "$lib/bots/keywords.json"
 
 export const searchResults = writable([])
 export const searchTerm = writable("")
@@ -7,6 +8,27 @@ export const pagination = writable({
 })
 export const resultsPerPage = writable(12)
 export const totalHits = writable(0)
+
+// sort keywords alphabetically by title attribute
+const sortedKeywords = [...keywords].sort((a, b) => {
+	if (a.title < b.title) {
+		return -1
+	}
+	if (a.title > b.title) {
+		return 1
+	}
+	return 0
+})
+
+const keywordsForFilter = sortedKeywords.map((k,index) => {
+	return {
+		id: index,
+		value: k.title,
+		label: k.title,
+		checked: false
+	}
+})
+
 
 const mockFilter = [
   {
@@ -22,17 +44,7 @@ const mockFilter = [
 		id: "category",
 		name: "Category",
 		term: "",
-		attributes: [
-			{id: 0, value: "Common Questions", label: "Common Questions", checked: false},
-			{id: 1, value: "Common Mistakes", label: "Common Mistakes", checked: false},
-			{id: 2, value: "Wallets", label: "Wallets", checked: false},
-			{id: 3, value: "Nodes", label: "Nodes", checked: false},
-			{id: 4, value: "Lightning", label: "Coinjoin", checked: false},
-			{id: 5, value: "Myths", label: "Myths", checked: false},
-			{id: 6, value: "Glossary", label: "Glossary", checked: false},
-			{id: 7, value: "Energy", label: "Energy", checked: false},
-
-		]
+		attributes: keywordsForFilter
 	}
 ]
 
