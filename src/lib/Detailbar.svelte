@@ -3,9 +3,7 @@
 	import Authors from '$lib/Resource/Authors.svelte';
 	import Tags from './Resource/Tags.svelte';
 
-	export let item = {
-		keywords: []
-	};
+	export let item;
 
 	$: console.log(item);
 </script>
@@ -40,8 +38,8 @@
 	<img class="object-contain" src={item.image} alt="" />
 
 	<div class="mb-3 mt-3 block">
-		<a href={item.uri} target="_blank" rel="noreferrer" class="btn">Öffnen</a>
-		<button class="btn">Link Kopieren</button>
+		<a href={item.uri} target="_blank" rel="noreferrer" class="btn">Open</a>
+		<button class="btn">Copy Link</button>
 	</div>
 
 	<Tags properties={item.keywords} />
@@ -54,7 +52,15 @@
 
 	<p class="mt-5 mb-5">{item.description}</p>
 
-	<Authors authors={item.authors} title="Authors:" />
+	<Authors
+		authors={item.authors &&
+			item.authors.filter((author) => author.name !== '')}
+		title="Authors:"
+	/>
 
-	<Authors authors={item.metadataContributors} title="Contributors:" />
+	<Authors
+		authors={item.metadataContributors &&
+			item.metadataContributors.filter((author) => author.name !== '')}
+		title="Contributors:"
+	/>
 </div>

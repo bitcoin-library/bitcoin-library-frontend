@@ -1,30 +1,14 @@
 <script>
-	import {
-		searchResults,
-		totalHits,
-		openDetailbar,
-		selectedCard
-	} from '../lib/stores';
+	import { openDetailbar, selectedCard } from '../lib/stores';
 	import SearchResults from '$lib/Search/SearchResults.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
-
-	export let data;
-
-	// // TODO remove later
-	// const fakeHits = [];
-	// for (let i = 0; i < 1; i++) {
-	// 	fakeHits.push(data.hits[0]);
-	// }
-	searchResults.set(data.hits);
-	$totalHits = data.estimatedTotalHits;
-	$: console.log($openDetailbar);
 </script>
 
 <div class="">
 	<Header />
 	<div class="flex">
-		<div class="{$openDetailbar ? 'basis-2/3' : 'basis-full'}">
+		<div class={$openDetailbar ? 'basis-2/3' : 'basis-full'}>
 			<SearchResults />
 		</div>
 		{#if $openDetailbar}

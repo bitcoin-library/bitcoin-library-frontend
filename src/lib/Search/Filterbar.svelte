@@ -3,7 +3,8 @@
 	import CustomFilter from '../Filters/CustomFilter.svelte';
 </script>
 
-<div class="flex mt-2">
-	<CustomFilter property={$filters.find((f) => f.name === 'Languages')} />
-	<CustomFilter property={$filters.find((f) => f.name === 'Category')} />
+<div class="mt-2 flex">
+	<!-- <CustomFilter property={$filters.find((f) => f.name === 'Languages')} /> -->
+	<CustomFilter property={$filters.find((f) => f.id === 'keywords')} />
+	<CustomFilter property={$filters.find((f) => f.id === 'resourceTypes')} />
 </div>

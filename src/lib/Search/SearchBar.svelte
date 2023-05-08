@@ -1,5 +1,4 @@
 <script>
-	import { buildBody } from '$lib/elastic/helper';
 	import {
 		filters,
 		openFilterbar,
@@ -11,22 +10,10 @@
 	} from '$lib/stores';
 	import Icon from 'svelte-awesome';
 	import { close, filter } from 'svelte-awesome/icons';
-	import { index } from "$lib/meili/index";
+	import { handleSearch } from '$lib/meili/search';
 
 	let itemSelected = { _source: { name: '' } };
 
-	async function handleSearch() {
-		const search = await index.search($searchTerm, {
-			filter: [["authorsAsStrings = 'Anita Posch'"]]
-		});
-		console.log(search)
-		searchResults.set(search.hits);
-		// const body = buildBody($searchTerm, $resultsPerPage, $pagination.current, $filters);
-		// const res = await fetch('/api/elastic/search', body);
-		// const result = await res.json();
-		// result?.hits && searchResults.set(result.hits.hits);
-		// $totalHits = result.hits.total.value;
-	}
 	$: searchTerm.set(itemSelected?._source?.name);
 </script>
 
@@ -36,12 +23,12 @@
 			<input
 				type="text"
 				placeholder="Search…"
-				class="input input-bordered w-full"
+				class="input-bordered input w-full"
 				bind:value={$searchTerm}
 				on:change={handleSearch}
 				on:input={handleSearch}
 			/>
-			<button class="btn btn-square" on:click={handleSearch}>
+			<button class="btn-square btn" on:click={handleSearch}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"
@@ -57,12 +44,15 @@
 				>
 			</button>
 		</div>
-		<button on:click={() => ($openFilterbar = !$openFilterbar)} class="btn ml-4">
+		<button
+			on:click={() => ($openFilterbar = !$openFilterbar)}
+			class="btn ml-4"
+		>
 			<span>Filter</span>
 			{#if $openFilterbar}
-			<Icon class="swap-off ml-1" data={close} />
+				<Icon class="swap-off ml-1" data={close} />
 			{:else}
-			<Icon class="swap-on ml-1" data={filter} />
+				<Icon class="swap-on ml-1" data={filter} />
 			{/if}
 		</button>
 	</div>
