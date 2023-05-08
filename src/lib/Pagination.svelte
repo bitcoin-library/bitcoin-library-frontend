@@ -1,6 +1,5 @@
 <script>
 	import { pagination, resultsPerPage, searchTerm, searchResults, totalHits } from '$lib/stores';
-	import { buildBody } from '$lib/elastic/helper';
 
 	let pages;
 

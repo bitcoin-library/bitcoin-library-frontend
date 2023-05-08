@@ -10,16 +10,23 @@
 		results = res;
 	});
 
-	$: checked = $filters.map((f) => f.attributes.filter((a) => a.checked)).flat();
+	$: checked = $filters
+		.map((f) => f.attributes.filter((a) => a.checked))
+		.flat();
 </script>
-<div class="h-screen overflow-auto no-scrollbar">
-	<p class="mb-4">
-		<span class="font-semibold">{$totalHits}</span> hits
+
+<div class="no-scrollbar h-screen overflow-auto">
+	<div class="flex flex-row items-center">
+		<p class="ml-6 mr-2">
+			<span class="font-semibold">{$totalHits}</span>
+			hits
+		</p>
 		{#if checked.length}
-			for <SearchResultsHeader bind:checked/>
+			<span class="mr-2">for </span>
+			<SearchResultsHeader bind:checked />
 		{/if}
-	</p>
-	
+	</div>
+
 	<div class="flex flex-wrap justify-center gap-2">
 		{#if results.length}
 			{#each results as result}
@@ -29,6 +36,6 @@
 			<div>No Results</div>
 		{/if}
 	</div>
-	
+
 	<Pagination />
 </div>
