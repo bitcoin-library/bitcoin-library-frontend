@@ -1,6 +1,7 @@
 import { writable, derived } from "svelte/store";
 import keywords from "$lib/bots/keywords.json"
 import resourceTypes from "$lib/bots/resourceTypes.json"
+import { nip19, generatePrivateKey, getPublicKey } from 'nostr-tools'
 
 export const searchResults = writable([])
 export const searchTerm = writable("")
@@ -99,3 +100,43 @@ export const selectedCard = writable({
   authors: [],
   metadataContributors: []
 })
+
+
+// user
+
+const defaultUser = {
+  pk: "",
+  npub: "",
+  lists: [],
+  showDetails: false,
+  profile: {}
+}
+
+function createUser() {
+  const { subscribe, set, update } = writable(defaultUser)
+
+  return {
+    subscribe,
+    set,
+    update,
+    setUser: async (ndk, pk) => {
+      const npub = nip19.npubEncode(pk)
+      const nUser = ndk.getUser({ npub: npub })
+      await nUser.fetchProfile()
+      const filter = { kinds: [30001], authors: [pk] };
+      const lists = await ndk.fetchEvents(filter);
+      update(u => ({ ...u, pk: pk, npub: npub, profile: nUser.profile, lists: lists }))
+    },
+    updateLists: async (ndk, pk) => {
+      const filter = { kinds: [30001], authors: [pk] };
+      const lists = await ndk.fetchEvents(filter);
+      update(u => ({ ...u, lists: lists }))
+    },
+    reset: () => {
+      openDetailbar.set(false)
+      set(defaultUser)
+    }
+  }
+}
+
+export const user = createUser()
