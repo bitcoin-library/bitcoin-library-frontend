@@ -31,6 +31,7 @@
 	"type": "module",
 	"dependencies": {
 		"@elastic/elasticsearch": "^8.6.0",
+		"@nostr-dev-kit/ndk": "^0.3.13",
 		"daisyui": "^2.47.0",
 		"meilisearch": "^0.32.0",
 		"mongodb": "5.0",

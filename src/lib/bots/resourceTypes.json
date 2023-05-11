@@ -1,13 +1,13 @@
 [
   {
-    "title": "Artikel",
+    "title": "Article",
     "sk": "2a2f92a5097de05ab338201ff276c9b5aa95d31b9d1d73a4097f99035ca8b70b",
     "pk": "e056f7d45e64afd52274b04234f389c1a65866dd158d31c652ea6665e54e881c",
     "id": "https://w3id.org/bitcoin-library/bots/f631971e-ee83-4c95-9fcf-b1c1639bb4f6",
     "npub": "npub1upt004z7vjha2gn5kpprfuufcxn9sekazkxnr3jjafnxte2w3qwqxnfmar"
   },
   {
-    "title": "Buch",
+    "title": "Book",
     "sk": "ad113489ad9d61661bca3228543261757dc1590aa53d43b59f06833cc2bd1b9b",
     "pk": "bdaeffd2d007ad47868cf5c6c89df3a7f4ff959d57aece8a9dae416494e5ca87",
     "id": "https://w3id.org/bitcoin-library/bots/818a0f8b-ef88-4630-a0e3-4150667b2ebc",

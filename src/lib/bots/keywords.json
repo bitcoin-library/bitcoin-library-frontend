@@ -7,14 +7,14 @@
     "npub": "npub1skwv0ghkl06gn8m2f0ayg848x0t8mlch63vszw26jtahftr5xftqav7rya"
   },
   {
-    "title": "Allgemein Bitcoin",
+    "title": "General Bitcoin",
     "sk": "729483fb63d37b85afcf5de8d768a985629448c814d8ba6baa9dba4e7a0312a1",
     "pk": "673920575695d21f1ebe88d573555aa4d661bab04970a11c89b953ae27e38240",
     "id": "https://w3id.org/bitcoin-library/bots/4e42c22d-0b45-4d8a-bb49-6d95d56e2558",
     "npub": "npub1vuujq46kjhfp78473r2hx4265ntxrw4sf9c2z8yfh9f6uflrsfqq022nal"
   },
   {
-    "title": "Geld",
+    "title": "Money",
     "sk": "5ea54c995d9ce463ea91124920f6674624dad6342c2f844a3d7fd6ce3655ba6e",
     "pk": "f956e661b4017770f554a53013ef6227c93deba0d854220457356f2272e86d07",
     "id": "https://w3id.org/bitcoin-library/bots/48f6aa45-6a14-476f-8dc4-ad8f012557ea",
@@ -28,42 +28,42 @@
     "npub": "npub1f9l55hga8jz9ml6mwvufm9f06p5fn7k3063f7nk8y9kwlrce2e4su5tnfd"
   },
   {
-    "title": "Ökonomie",
+    "title": "Economy",
     "sk": "52756b57da0be43e52d2f3cea985512830af5dc9fcc56ad4a40a7becaf3f077b",
     "pk": "f34576883c61e9183a6003ca0c48045dec16db1e5de410d8ba4d731279dc9d66",
     "id": "https://w3id.org/bitcoin-library/bots/4331f177-790b-432a-b44d-1e8c985caf6c",
     "npub": "npub17dzhdzpuv853swnqq09qcjqythkpdkc7thjppk96f4e3y7wun4nqrzns9u"
   },
   {
-    "title": "Philosophie",
+    "title": "Philosophy",
     "sk": "6070db3a8dd5113c414e760f71d29a871a221747581e03b75fb7beb8ff92f631",
     "pk": "61b6fc49022e4ae139bd10f4f2c42890e6779eb2fc1b83f0b0fb421b73063f30",
     "id": "https://w3id.org/bitcoin-library/bots/d41061ee-8e61-4c75-8a69-f2a2616920c5",
     "npub": "npub1vxm0cjgz9e9wzwdazr6093pgjrn8084jlsdc8u9sldppkucx8ucqyjltws"
   },
   {
-    "title": "Technik",
+    "title": "Technology",
     "sk": "2b26c46fa6221408797a8172f4c9cf84808ecb2b85ca8a3d12e952ecaebb4c9e",
     "pk": "810f80c4194ddfe0c1b6c3350dd90e8928a678e86cdda6f55568f139f16d6ea7",
     "id": "https://w3id.org/bitcoin-library/bots/16461ce4-3435-4e25-a96b-193662914f18",
     "npub": "npub1sy8cp3qefh07psdkcv6smkgw3y52v78gdnw6da24drcnnutdd6ns3nezsc"
   },
   {
-    "title": "Eigentum",
+    "title": "Property",
     "sk": "bc5c0c6fefc080a96d9add5fe2062c73d276dd70dbff09e75dd7aabfe889fdde",
     "pk": "e31c5942c710f317d65fc2ae606ac0819106d9e5231eafae32d51f04a0ce0721",
     "id": "https://w3id.org/bitcoin-library/bots/1fbb4299-2358-4278-8b40-5daa11f99fd1",
     "npub": "npub1uvw9jsk8zre304jlc2hxq6kqsxgsdk09yv02lt3j650sfgxwqusst7mgf0"
   },
   {
-    "title": "Einsteiger",
+    "title": "Beginner",
     "sk": "cc62ec5b44cec9c007b9b927cbf9194fce4c62cc42602254f37b1d2aecd97f45",
     "pk": "6332c3c21fe800c25db80e103b41ccfc3ad3fb0e9c1b63ad404da021ca207dfc",
     "id": "https://w3id.org/bitcoin-library/bots/1fab6d8b-5356-4ff6-bb4e-a820232666c5",
     "npub": "npub1vvev8sslaqqvyhdcpcgrkswvlsad87cwnsdk8t2qfkszrj3q0h7qdnwgjj"
   },
   {
-    "title": "Fortgeschrittene",
+    "title": "Advanced",
     "sk": "fbd10f580a713b30e2ae1e833bba58f05790500b2cf074e597e0cb32781401da",
     "pk": "415acb3901a20737219d63695b5a34baaa3238a1745aac3eae8fff0e26ff20b2",
     "id": "https://w3id.org/bitcoin-library/bots/e4e0cdbe-0c46-4abb-a923-789b0e01fe80",
@@ -77,7 +77,7 @@
     "npub": "npub170atkzeua4qetl4a8yxyldx993xm86ggkuqcmmck9wzq5s2xjcnsq434a2"
   },
   {
-    "title": "Steuern",
+    "title": "Taxes",
     "sk": "f92166117787c770a5357a7f3d7c0c80ed82d128ececb095d8ea661c69d3a721",
     "pk": "1545a5a66619aa11ff8b3723d9a65e99b469eaa2b5b3afeeb5c95d09a83c0b5b",
     "id": "https://w3id.org/bitcoin-library/bots/da19b8a0-5254-4f4e-9ded-577e701f09f6",
@@ -105,7 +105,7 @@
     "npub": "npub1twrxpu3et6t6cppdktrk29gz7w0jrg7aacnzl3p2v35uvmlrsnlsptc35q"
   },
   {
-    "title": "Zusammenstellung",
+    "title": "Compilation",
     "sk": "a4b84f9e9806326d5ccf2514c0b4c09270b1b1780c5a6476bd10f5579d84f513",
     "pk": "958f1d926fd3369e702400830786566fee91bb81bdade20de641c576c162f58b",
     "id": "https://w3id.org/bitcoin-library/bots/01068810-0e22-4244-a411-71f418e9757a",
@@ -133,21 +133,21 @@
     "npub": "npub1m3h3wr77mdeer3zc326ppzerq36nds7nas838l862ezp9t270lkq56mmt2"
   },
   {
-    "title": "Kryptografie",
+    "title": "Cryptography",
     "sk": "7615dc32ab541ed35eb77cc959f4d2241f882006309b7cc2611c73a0e93ed399",
     "pk": "813f814da6d826c618d82d5106847ef7b753a15027aaac337eb450737336681d",
     "id": "https://w3id.org/bitcoin-library/bots/c2490ef0-6ed2-4b4d-a1b3-16f305a4d5b3",
     "npub": "npub1sylczndxmqnvvxxc94gsdpr777m48g2sy742cvm7k3g8xuekdqwsw8z6xc"
   },
   {
-    "title": "kostenlos",
+    "title": "Free",
     "sk": "4953077634b4ec60948eee85924855856bf24ceaf642d51eab31ddb19399da67",
     "pk": "7da7c29a9520300a1422415fb4b65b82641ec1750faf50f740bff9e62e1eb23f",
     "id": "https://w3id.org/bitcoin-library/bots/520593e2-fa3b-497a-98a7-ad764acc53fe",
     "npub": "npub10knu9x54yqcq59pzg90mfdjmsfjpast4p7h4pa6qhlu7vts7kglsag58rz"
   },
   {
-    "title": "V4V",
+    "title": "Value For Value",
     "sk": "34116a0ab76af6275fe83b0514cd0df991eafaa66aa43d51cfa7bb45ceec0a98",
     "pk": "088bbd228023942efa15556db406682d9a3d2304b4aa763b1a04af972b54c603",
     "id": "https://w3id.org/bitcoin-library/bots/ca9b64e9-5add-4464-a866-86655103327c",
@@ -161,7 +161,7 @@
     "npub": "npub1p6u6lueth5qj20s7vaf0xm0q756k5ufu8sgws7asywpshzcz392s3dwsa8"
   },
   {
-    "title": "Umwelt",
+    "title": "Environment",
     "sk": "1a1dfd9b98879d9bbe9930df3d52d1adf38ecd69ad6a979183159012b720aed9",
     "pk": "7d6d4ec9cef59e87e6b8dd6ba085ffa49ececa869523706a1528b229fe11a555",
     "id": "https://w3id.org/bitcoin-library/bots/cc5915d6-c848-420d-9029-c4fe4973fe74",
@@ -175,7 +175,7 @@
     "npub": "npub1e8ux7dy68k5uewc5m6q8904z8mvdtnxn4rrwpp4mk0sfy8zzk38ss5ea30"
   },
   {
-    "title": "Idee",
+    "title": "Idea",
     "sk": "8c7d188bd226975e7289c585268304e3a12355c17fc986643690b1efed403f21",
     "pk": "fd828cd8193f0a26a6c4e4d4ec07b82832082784e5d596fb46bda864485ae593",
     "id": "https://w3id.org/bitcoin-library/bots/a5f03419-2d62-4cdb-9ae2-1d15cbf99bbb",
@@ -189,7 +189,7 @@
     "npub": "npub1z8u4z5ctrkmfd8wqzn7zetpm27p59047qzsafukrfyxj3vec9lgqrwr0cq"
   },
   {
-    "title": "Schulung",
+    "title": "Training Material",
     "sk": "79ba6fe661ded9405a2de308baf719dc45ded05c60ce4205099a73ba2cfd6fc5",
     "pk": "ce33d73a7ba132a17fa10e4df6400a650a8b984c5c01a359825ea9238eff7cd3",
     "id": "https://w3id.org/bitcoin-library/bots/4b898491-cfb0-41c2-a438-0778228600a0",
@@ -203,7 +203,7 @@
     "npub": "npub1wef09k3ryttl2cgwsmfcte6tkjdy9sqk90d7x5r2dj0gdg74524qdsd3v7"
   },
   {
-    "title": "Kinder",
+    "title": "Children",
     "sk": "8287ea61614810a45e352323e96d562c590407a0c48e58f2d6237f91481e1ba5",
     "pk": "a0aab6d5d54aae34470ab7e4bc4c915a2c5643d37fc2aa94ec7d319b132cdffa",
     "id": "https://w3id.org/bitcoin-library/bots/81536f7d-3193-4840-925f-bbc8b26d43c0",

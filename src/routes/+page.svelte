@@ -1,8 +1,9 @@
 <script>
-	import { openDetailbar, selectedCard } from '../lib/stores';
+	import { openDetailbar, selectedCard, user } from '../lib/stores';
 	import SearchResults from '$lib/Search/SearchResults.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
+	import UserDetailbar from '$lib/User/UserDetailbar.svelte';
 </script>
 
 <div class="">
@@ -13,7 +14,11 @@
 		</div>
 		{#if $openDetailbar}
 			<div class="basis-1/3">
-				<Detailbar item={$selectedCard} />
+				{#if $user.showDetails}
+					<UserDetailbar />
+				{:else}
+					<Detailbar item={$selectedCard} />
+				{/if}
 			</div>
 		{/if}
 	</div>
