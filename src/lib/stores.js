@@ -125,7 +125,7 @@ function createUser() {
       await nUser.fetchProfile()
       const filter = { kinds: [30001], authors: [pk] };
       const lists = await ndk.fetchEvents(filter);
-      update(u => ({ ...u, pk: pk, npub: npub, profile: nUser.profile, lists: lists }))
+      update(u => ({ ...u, pk: pk, npub: npub, profile: nUser.profile, lists: [...lists] }))
     },
     updateLists: async (ndk, pk) => {
       const filter = { kinds: [30001], authors: [pk] };
