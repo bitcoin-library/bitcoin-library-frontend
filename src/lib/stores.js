@@ -130,7 +130,7 @@ function createUser() {
     updateLists: async (ndk, pk) => {
       const filter = { kinds: [30001], authors: [pk] };
       const lists = await ndk.fetchEvents(filter);
-      update(u => ({ ...u, lists: lists }))
+      update(u => ({ ...u, lists: [...lists] }))
     },
     reset: () => {
       openDetailbar.set(false)
