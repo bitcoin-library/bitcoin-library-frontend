@@ -1,6 +1,7 @@
 <script>
 	import { user } from '$lib/stores';
 	import { addList } from '$lib/nostr/addList.js';
+	import Lists from '$lib/User/Lists.svelte';
 
 	let listName;
 	$: console.log($user);
@@ -9,21 +10,7 @@
 <div class="no-scrollbar sticky top-0 mr-4 mb-4 h-screen overflow-auto pl-12">
 	<p>Hello {$user.profile.displayName}</p>
 	<label for="my-modal" class="btn">Create New List</label>
-	{#each [...$user.lists] as list}
-		<div class="rounded border border-solid border-white p-2">
-			<p class="text-xl font-bold">
-				#
-				<span class="underline">
-					{list.tags.find((l) => l[0] === 'd')[1]}
-				</span>
-			</p>
-			{#each list.tags.filter((l) => l[0] !== 'd') as tag}
-				<div class="m-2 rounded border border-solid border-white p-2">
-					<p>{tag[1]}</p>
-				</div>
-			{/each}
-		</div>
-	{/each}
+	<Lists lists={$user.lists} />
 	<button
 		on:click={() => {
 			user.reset();
