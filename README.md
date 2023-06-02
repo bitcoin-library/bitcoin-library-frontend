@@ -8,6 +8,8 @@ These events get parsed by a note fetcher and are then send to the backend to ma
 
 Since everything is based on Nostr and sent to relays also other services could easily make use of the data.
 
+See here for some slides I created for the Hack-Nostr-On Hackathon: [Slides](https://bitcoin-library.github.io/slides/2023-05-05-hack-on-nostr/2023-05-05-hack-on-nostr.html#/title-slide)
+
 ![Screenshot](./docs/media/sample_screenshot.png)
 
 ## Metadata Scheme of Notes
