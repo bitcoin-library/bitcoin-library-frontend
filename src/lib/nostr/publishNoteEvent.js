@@ -1,13 +1,13 @@
 
+
 // import { NDKEvent } from "@nostr-dev-kit/ndk";
 import { ndk } from "./ndk.js";
 import { user } from "$lib/stores.js";
 import { get } from "svelte/store";
-// Import the package, NIP-07 signer and NDK event
-import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
-import { relays } from "$lib/nostr/ndk.js";
+import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
 
-export const removeList = async (listEvent) => {
+// selected lists is array of list ids
+export const publishNoteEvent = async (content) => {
   // FIXME reuse ndk object from ndk.js
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer
@@ -16,15 +16,15 @@ export const removeList = async (listEvent) => {
       console.log("Permission granted to read their public key:", user.npub);
     }
   });
-  const event = new NDKEvent(ndk);
-  event.kind = 5;
-  event.content = "remove list";
-  event.tags = [
-    ["e", listEvent]
-  ]
+  const event = new NDKEvent(ndk)
+  event.kind = 1;
+  event.content = content;
+  console.log(event)
   await event.sign(ndk.signer)
   await ndk.publish(event)
-  console.log("removed list with list id", listEvent)
-  // // update lists
-  await user.updateLists(ndk, get(user).pk)
+  console.log("published event")
+
+  return event
+  // update lists
+  // user.updateLists(ndk, get(user).pk)
 }

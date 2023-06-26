@@ -22,10 +22,8 @@
 	function handleListSelect(i) {
 		const index = selectedLists.indexOf(i);
 		if (index === -1) {
-			console.log('adding');
 			selectedLists = [...selectedLists, i];
 		} else {
-			console.log('removing');
 			selectedLists = selectedLists.filter((l) => l !== i);
 		}
 	}
@@ -44,7 +42,7 @@
 >
 	<!-- only display if item.last updated is not older than a week  -->
 	{#if item.updated_at > Date.now() - 86400000}
-		<div class="po badge badge-secondary absolute top-2 right-6">NEW</div>
+		<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
 	{/if}
 	<figure>
 		<img
@@ -81,7 +79,7 @@
 			class="btn-sm btn-circle btn absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Select the lists to add this resource!</h3>
-		{#each [...$user.lists] as list (list.id)}
+		{#each $user.lists as list (list.id)}
 			<div
 				on:click={handleListSelect(list.id)}
 				class="m-2 flex flex-row items-center rounded border border-solid border-white p-2 hover:bg-orange-500 hover:text-black"
@@ -99,7 +97,9 @@
 				{/if}
 			</div>
 		{/each}
-		<label class="btn" on:click={addResourceToLists(selectedLists, item.id)}
+		<label
+			class="btn"
+			on:click={addResourceToLists(selectedLists, $selectedCard.eventID)}
 			>Add Resource To Lists</label
 		>
 	</div>
