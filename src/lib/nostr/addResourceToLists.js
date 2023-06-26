@@ -5,8 +5,11 @@ import { user } from "$lib/stores.js";
 import { get } from "svelte/store";
 import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
 
-// selected lists is array of list ids
-export const addResourceToLists = async (selectedLists, resourceEventId) => {
+/**
+ * @param {string[]} selectedLists - List ids
+ * @param {string} resourceEventId - Id of the event to add to the list
+ */
+export const addResourceToLists = async (selectedLists, resourceEventId, index = null) => {
   // FIXME reuse ndk object from ndk.js
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer
@@ -15,32 +18,44 @@ export const addResourceToLists = async (selectedLists, resourceEventId) => {
       console.log("Permission granted to read their public key:", user.npub);
     }
   });
-  selectedLists.forEach(async (listID) => {
+  const promises = selectedLists.map(async (listID) => {
     console.log(get(user))
     const event = new NDKEvent(ndk);
-    const listName = Array.from(get(user).lists)
+    const listName = get(user).lists
       .find(l => l.id === listID)
       .tags
       .find(t => t[0] === "d")
     [1]
-    const existingEvents = Array.from(get(user).lists)
+    const existingEvents = get(user).lists
       .find(l => l.id === listID)
       .tags
       .filter(t => t[0] !== "d")
     console.log("listName", listName)
     console.log("existingEvents", existingEvents)
+    console.log(resourceEventId)
     event.kind = 30001;
     event.content = "";
-    event.tags = [
-      ["d", listName],
-      ...(existingEvents.length ? existingEvents : []),
-      ["e", resourceEventId]
-    ]
+    if (index === null) {
+      event.tags = [
+        ["d", listName],
+        ...(existingEvents.length ? existingEvents : []),
+        ["e", resourceEventId]
+      ]
+    } else {
+      existingEvents.splice(index + 1, 0, ["e", resourceEventId]);
+      console.log("inserted event in existing events", existingEvents)
+      event.tags = [
+        ["d", listName],
+        ...existingEvents
+      ]
+      console.log("tags", event.tags)
+    }
     console.log(event)
     await event.sign(ndk.signer)
     await ndk.publish(event)
     console.log("published list")
     // update lists
-    user.updateLists(ndk, get(user).pk)
   });
+  await Promise.all(promises)
+  user.updateLists(ndk, get(user).pk)
 }

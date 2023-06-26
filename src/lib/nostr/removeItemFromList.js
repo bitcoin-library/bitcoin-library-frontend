@@ -23,7 +23,7 @@ export const removeItemFromList = async (list, index) => {
   event.content = "remove item from list";
 
   // filter event from tags array 
-  const tags = list.tags.filter((_, lIndex) => lIndex !== index)
+  const tags = list.tags.filter((_, lIndex) => lIndex !== index + 1)
   console.log("filtered tags", tags)
 
   event.tags = tags
