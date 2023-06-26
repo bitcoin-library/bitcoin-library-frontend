@@ -1,5 +1,4 @@
 <script>
-	import SearchHeader from './Search/SearchHeader.svelte';
 	import { login } from '$lib/nostr/login.js';
 	import { user } from '$lib/stores.js';
 	import User from '$lib/User/Avatar.svelte';
@@ -9,10 +8,6 @@
 
 <div class="navbar sticky top-0 z-50 flex flex-row gap-2 bg-base-100">
 	<a href="/" class=" btn-ghost btn text-xl normal-case">Bitcoin-Library</a>
-	<div class="flex-grow justify-center">
-		<SearchHeader />
-	</div>
-	<a href="/editor" class="btn">Add Resource</a>
 	{#if $user.npub}
 		<User user={$user} />
 	{:else}
