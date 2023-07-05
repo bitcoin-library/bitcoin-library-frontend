@@ -23,7 +23,7 @@
 			<input
 				type="text"
 				placeholder="Search…"
-				class="input-bordered input w-full"
+				class="input-bordered input"
 				bind:value={$searchTerm}
 				on:change={handleSearch}
 				on:input={handleSearch}
@@ -44,10 +44,7 @@
 				>
 			</button>
 		</div>
-		<button
-			on:click={() => ($openFilterbar = !$openFilterbar)}
-			class="btn gap-2"
-		>
+		<button on:click={() => ($openFilterbar = !$openFilterbar)} class="btn">
 			<span>Filter</span>
 			{#if $openFilterbar}
 				<Icon class="swap-off pl-1" data={close} />

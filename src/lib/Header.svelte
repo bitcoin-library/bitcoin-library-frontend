@@ -15,15 +15,15 @@
 	</div>
 	<!-- <div class="invisible flex-grow justify-center sm:visible"> -->
 	<!-- 	<SearchHeader /> -->
+	<!-- 	<a href="/editor" class="btn">Add Resource</a> -->
+	<!-- 	{#if $user.npub} -->
+	<!-- 		<User user={$user} /> -->
+	<!-- 	{:else} -->
+	<!-- 		<button class="btn" on:click={login}>Login</button> -->
+	<!-- 	{/if} -->
 	<!-- </div> -->
-	<!-- <a href="/editor" class="btn">Add Resource</a> -->
-	<!-- {#if $user.npub} -->
-	<!-- 	<User user={$user} /> -->
-	<!-- {:else} -->
-	<!-- 	<button class="btn" on:click={login}>Login</button> -->
-	<!-- {/if} -->
 </div>
-<div class="visible flex w-full sm:invisible">
+<div class="visible flex w-full flex-col sm:invisible">
 	<div class="visible m-2 justify-center sm:invisible">
 		<SearchHeader />
 	</div>
