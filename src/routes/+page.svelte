@@ -6,7 +6,7 @@
 	import UserDetailbar from '$lib/User/UserDetailbar.svelte';
 </script>
 
-<div class="">
+<div>
 	<Header />
 	<div class="flex">
 		<div class={$openDetailbar ? 'basis-2/3' : 'basis-full'}>

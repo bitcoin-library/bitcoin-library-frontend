@@ -18,7 +18,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSearch} class="">
-	<div class="form-control flex flex-row">
+	<div class="form-control flex flex-row gap-2">
 		<div class="input-group">
 			<input
 				type="text"
@@ -46,13 +46,13 @@
 		</div>
 		<button
 			on:click={() => ($openFilterbar = !$openFilterbar)}
-			class="btn ml-4"
+			class="btn gap-2"
 		>
 			<span>Filter</span>
 			{#if $openFilterbar}
-				<Icon class="swap-off ml-1" data={close} />
+				<Icon class="swap-off pl-1" data={close} />
 			{:else}
-				<Icon class="swap-on ml-1" data={filter} />
+				<Icon class="swap-on pl-1" data={filter} />
 			{/if}
 		</button>
 	</div>

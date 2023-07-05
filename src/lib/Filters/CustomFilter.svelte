@@ -12,16 +12,16 @@
 
 <div>
 	<div class="dropdown">
-		<label class="btn m-1" tabindex="0">
-			<span class="px-4">{property.name}</span>
-			<div class="px-2" class:invisible={!activeFilter}>
+		<label class="btn flex flex-row gap-2" tabindex="0">
+			<span class="">{property.name}</span>
+			<div class="" class:invisible={!activeFilter}>
 				<Icon style="color: orange" data={checkSquare} />
 			</div>
 			<Icon data={chevronDown} />
 		</label>
 		<div
 			tabindex="0"
-			class="card-compact card dropdown-content w-64 bg-primary p-2 text-primary-content shadow"
+			class="card dropdown-content card-compact w-64 bg-primary p-2 text-primary-content shadow"
 		>
 			<div class="form-control">
 				{#each property.attributes as attribute}
