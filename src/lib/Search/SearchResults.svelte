@@ -37,5 +37,5 @@
 		{/if}
 	</div>
 
-	<Pagination />
+	<!-- <Pagination /> -->
 </div>
