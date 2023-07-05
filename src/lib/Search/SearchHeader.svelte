@@ -4,10 +4,9 @@
 	import Filterbar from './Filterbar.svelte';
 </script>
 
-<div class="flex flex-col items-center gap-y-2">
+<div class="flex flex-col items-center gap-y-2 gap-x-1">
 	<SearchBar />
 	{#if $openFilterbar}
 		<Filterbar />
 	{/if}
 </div>
-
