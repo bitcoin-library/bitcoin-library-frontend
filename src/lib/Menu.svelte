@@ -1,7 +1,7 @@
 <script>
 	import navicon from 'svelte-awesome/icons/navicon';
 	import { Icon } from 'svelte-awesome';
-	import { user } from '$lib/stores.js';
+	import { openDetailbar, selectedCard, user } from '$lib/stores.js';
 	import { login } from '$lib/nostr/login.js';
 	import User from '$lib/User/Avatar.svelte';
 </script>
@@ -21,13 +21,40 @@
 		tabindex="0"
 		class="menu-sm dropdown-content menu rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
 	>
-		<li><a href="/editor">Add Resource</a></li>
 		<li>
 			{#if $user.npub}
-				<a> Logout </a>
+				<a
+					on:click={() => {
+						user.reset();
+					}}
+				>
+					Logout
+				</a>
 			{:else}
 				<a on:click={login}>Login</a>
 			{/if}
 		</li>
+		<li><a href="/editor">Add Resource</a></li>
+		{#if $user.npub}
+			<li>
+				<a
+					on:click={() => {
+						if ($openDetailbar === true && Object.keys($selectedCard).length) {
+							selectedCard.set({});
+							user.update((u) => ({ ...u, showDetails: true }));
+						} else if (
+							$openDetailbar === true &&
+							!Object.keys($selectedCard).length
+						) {
+							$openDetailbar = false;
+							user.update((u) => ({ ...u, showDetails: false }));
+						} else {
+							$openDetailbar = true;
+							user.update((u) => ({ ...u, showDetails: true }));
+						}
+					}}>My Lists</a
+				>
+			</li>
+		{/if}
 	</ul>
 </div>
