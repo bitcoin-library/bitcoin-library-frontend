@@ -9,11 +9,13 @@
 <div>
 	<Header />
 	<div class="flex">
-		<div class={$openDetailbar ? 'basis-2/3' : 'basis-full'}>
+		<div
+			class={$openDetailbar ? 'hidden basis-full sm:basis-2/3' : 'basis-full'}
+		>
 			<SearchResults />
 		</div>
 		{#if $openDetailbar}
-			<div class="basis-1/3">
+			<div class="flex w-full">
 				{#if $user.showDetails}
 					<UserDetailbar />
 				{:else}

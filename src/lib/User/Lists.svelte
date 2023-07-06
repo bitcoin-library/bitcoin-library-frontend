@@ -8,6 +8,7 @@
 	import { getResourcesFromEventTags } from '$lib/utils/getResourcesFromEventTags.js';
 	import { publishNoteEvent } from '$lib/nostr/publishNoteEvent';
 	import { addResourceToLists } from '$lib/nostr/addResourceToLists';
+	import { addList } from '$lib/nostr/addList';
 
 	import { plus, pencil, shareAlt } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
@@ -17,6 +18,7 @@
 	let noteContent;
 	let currentList;
 	let allowEdit = false;
+	let listName;
 
 	async function addNoteToList() {
 		const event = await publishNoteEvent(noteContent);
@@ -25,12 +27,12 @@
 	$: listsToShow = selectedListIDs.length
 		? lists.filter((l) => selectedListIDs.includes(l.id))
 		: lists;
-	$: console.log(allowEdit);
 </script>
 
 {#if $user.npub}
-	<div class="form-control flex flex-row justify-end p-2">
-		<label class="label cursor-pointer">
+	<div class="form-control my-2 flex flex-row gap-2">
+		<label for="my-modal" class="btn">Create New List</label>
+		<label class="label ml-auto cursor-pointer">
 			<Icon class="mr-2" style="color: orange" data={pencil} />
 			<input
 				type="checkbox"
@@ -81,11 +83,14 @@
 					class="m-2 flex flex-row rounded border border-solid border-white p-2"
 				>
 					<div class="w-48">
-						{#if resource.type === 'LearningResource'}
-							<p class="truncate">{resource.name}</p>
-						{:else}
-							<p class="text-xl">{resource.content}</p>
-						{/if}
+						<a class="underline" href={resource.uri}>
+							{#if resource.type === 'LearningResource'}
+								{(console.log(resource), '')}
+								<p class="truncate">{resource.name}</p>
+							{:else}
+								<p class="text-xl">{resource.content}</p>
+							{/if}
+						</a>
 					</div>
 					{#if allowEdit}
 						<button
@@ -145,5 +150,30 @@
 		<!-- update the list -->
 		<label for="modal-add-note" on:click={addNoteToList} class="btn">Add</label
 		>
+	</div>
+</div>
+
+<!-- add list modal -->
+<input type="checkbox" id="my-modal" class="modal-toggle" />
+<div class="modal">
+	<div class="modal-box relative">
+		<label for="my-modal" class="btn-sm btn-circle btn absolute right-2 top-2"
+			>✕</label
+		>
+		<h3 class="text-lg font-bold">Create New List</h3>
+		<form>
+			<label for="name">Name</label>
+			<input
+				type="text"
+				class="input-bordered input w-full max-w-xs"
+				id="name"
+				bind:value={listName}
+			/>
+		</form>
+		<div class="modal-action">
+			<label on:click={addList(listName)} for="my-modal" class="btn"
+				>Create!</label
+			>
+		</div>
 	</div>
 </div>

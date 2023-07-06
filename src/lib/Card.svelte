@@ -36,46 +36,49 @@
 	item
 		? bordered
 		: 'border-2 border-white'}"
-	on:click={() => ($openDetailbar = true)}
-	on:click={() => user.update((u) => ({ ...u, showDetails: false }))}
-	on:click={() => selectedCard.set(item)}
 >
-	<!-- only display if item.last updated is not older than a week  -->
-	{#if item.updated_at > Date.now() - 86400000}
-		<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
-	{/if}
-	<figure>
-		<img
-			class="h-48 object-cover p-4"
-			src={item.image || './images/Bitcoin.png'}
-			alt="Here could be your image"
-		/>
-	</figure>
-	<div class="card-body">
-		<div class="justify-end">
-			<Tags properties={item.keywords} />
-		</div>
-		<h2 class="card-title">
-			{item.name}
-		</h2>
-		<p>{shorten(item.description, 120)} [...]</p>
-		{#if $user.npub}
-			<label
-				for="my-modal-3"
-				class="btn-circle btn mr-1 ml-auto bg-orange-500 hover:bg-orange-500"
-			>
-				<Icon style="color: black" data={plus} />
-			</label>
+	<div
+		on:click={() => ($openDetailbar = true)}
+		on:click={() => user.update((u) => ({ ...u, showDetails: false }))}
+		on:click={() => selectedCard.set(item)}
+	>
+		<!-- only display if item.last updated is not older than a week  -->
+		{#if item.updated_at > Date.now() - 86400000}
+			<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
 		{/if}
+		<figure>
+			<img
+				class="h-48 object-cover p-4"
+				src={item.image || './images/Bitcoin.png'}
+				alt="Here could be your image"
+			/>
+		</figure>
+		<div class="card-body">
+			<div class="justify-end">
+				<Tags properties={item.keywords} />
+			</div>
+			<h2 class="card-title">
+				{item.name}
+			</h2>
+			<p>{shorten(item.description, 120)} [...]</p>
+		</div>
 	</div>
+	{#if $user.npub}
+		<label
+			for="add-list-modal"
+			class="btn-circle btn mr-2 mb-2 ml-auto bg-orange-500 hover:bg-orange-500"
+		>
+			<Icon style="color: black" data={plus} />
+		</label>
+	{/if}
 </div>
 
 <!-- add list modal -->
-<input type="checkbox" id="my-modal-3" class="modal-toggle" />
+<input type="checkbox" id="add-list-modal" class="modal-toggle" />
 <div class="modal">
 	<div class="modal-box relative">
 		<label
-			for="my-modal-3"
+			for="add-list-modal"
 			class="btn-sm btn-circle btn absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Select the lists to add this resource!</h3>
