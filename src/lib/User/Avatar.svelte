@@ -19,7 +19,7 @@
 				user.update((u) => ({ ...u, showDetails: true }));
 			}
 		}}
-		class="w-16 cursor-pointer rounded"
+		class="cursor-pointer rounded-full"
 	>
 		<img src={$user?.profile?.image} />
 	</div>
