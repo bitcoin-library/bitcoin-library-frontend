@@ -10,7 +10,10 @@
 	import Author from '$lib/editor/Author.svelte';
 	import { generateShortId } from '$lib/utils.js';
 	import MdContributor from '$lib/editor/MDContributor.svelte';
+	import { activeMenu } from '$lib/stores.js';
 
+	// if page is visited directly make sure to set it active
+	activeMenu.update((m) => ({ ...m, addResource: true }));
 	export let data;
 	const { properties } = schema;
 	let events = [];
@@ -79,78 +82,76 @@
 	$: console.log($resource);
 </script>
 
-<div class="flex flex-col p-2">
+<div class="flex w-full justify-center p-2">
 	{#if !$published}
-		<form on:submit|preventDefault={onSubmit}>
-			<div class="form-control">
-				{#if $resource.image}
-					<img class="h-48 object-contain" src={$resource.image} alt="" />
-				{/if}
-				<div>
-					<label for="url" class="label">URL of ressource</label>
-					<input
-						id="url"
-						on:change={handleURL}
-						bind:value={$resource.id}
-						type="text"
-						class="input-bordered input"
-					/>
-				</div>
-				<div>
-					<label class="label">
-						{properties.name.title}
-					</label>
-					<input
-						bind:value={$resource.name}
-						class="input-bordered input"
-						type="text"
-					/>
-				</div>
-				<div>
-					<label class="label">
-						{properties.description.title}
-					</label>
-					<textarea
-						bind:value={$resource.description}
-						class="textarea-bordered textarea"
-						placeholder="Beschreibung"
-					/>
-				</div>
-				<div>
-					<label class="label"> Image URL </label>
-					<input
-						bind:value={$resource.image}
-						class="input-bordered input"
-						type="text"
-					/>
-				</div>
-				<div>
-					<label for="">
-						{properties.resourceType.title}
-						<Multiselect property={properties.resourceType} />
-					</label>
-				</div>
-				<div>
-					<label for="">
-						{properties.keywords.title}
-						<Multiselect property={properties.keywords} />
-					</label>
-				</div>
-				<div class="mt-4 flex flex-row items-center gap-2">
-					<label>Author(s)</label>
-					<label
-						on:click={() =>
-							($resource.authors = [
-								...$resource.authors,
-								{ name: '', npub: '', id: generateShortId() }
-							])}
-						class="btn-sm btn-circle btn">+</label
-					>
-				</div>
-				{#each $resource.authors as author}
-					<Author {author} />
-				{/each}
+		<form class="flex flex-col gap-2" on:submit|preventDefault={onSubmit}>
+			{#if $resource.image}
+				<img class="h-48 object-contain" src={$resource.image} alt="" />
+			{/if}
+			<div>
+				<label for="url" class="label">URL of ressource</label>
+				<input
+					id="url"
+					on:change={handleURL}
+					bind:value={$resource.id}
+					type="text"
+					class="input-bordered input"
+				/>
 			</div>
+			<div>
+				<label class="label">
+					{properties.name.title}
+				</label>
+				<input
+					bind:value={$resource.name}
+					class="input-bordered input"
+					type="text"
+				/>
+			</div>
+			<div>
+				<label class="label">
+					{properties.description.title}
+				</label>
+				<textarea
+					bind:value={$resource.description}
+					class="textarea-bordered textarea"
+					placeholder="Description"
+				/>
+			</div>
+			<div>
+				<label class="label"> Image URL </label>
+				<input
+					bind:value={$resource.image}
+					class="input-bordered input"
+					type="text"
+				/>
+			</div>
+			<div>
+				<label for="">
+					{properties.resourceType.title}
+					<Multiselect property={properties.resourceType} />
+				</label>
+			</div>
+			<div>
+				<label for="">
+					{properties.keywords.title}
+					<Multiselect property={properties.keywords} />
+				</label>
+			</div>
+			<div class="mt-4 flex flex-row items-center gap-2">
+				<label>Author(s)</label>
+				<label
+					on:click={() =>
+						($resource.authors = [
+							...$resource.authors,
+							{ name: '', npub: '', id: generateShortId() }
+						])}
+					class="btn-sm btn-circle btn">+</label
+				>
+			</div>
+			{#each $resource.authors as author}
+				<Author {author} />
+			{/each}
 			<div class="mt-4">
 				<label>Info about you</label>
 				<MdContributor mdContributor={$resource.metadataContributor} />

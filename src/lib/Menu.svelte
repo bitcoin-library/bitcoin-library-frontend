@@ -9,8 +9,9 @@
 	} from '$lib/stores.js';
 	import { login } from '$lib/nostr/login.js';
 	import User from '$lib/User/Avatar.svelte';
+	import AddResource from './AddResource.svelte';
 
-	// TODO make global state
+	$: console.log($activeMenu);
 </script>
 
 <div class="dropdown-end dropdown">
@@ -46,7 +47,18 @@
 				<a on:click={login}>Login</a>
 			{/if}
 		</li>
-		<li><a href="/editor">Add Resource</a></li>
+		<li>
+			<a
+				href={!$activeMenu.addResource ? '/' : '/editor'}
+				class:active={$activeMenu.addResource}
+				on:click={() =>
+					activeMenu.update((m) => ({
+						...m,
+						addResource: !m.addResource
+					}))}>Add Resource</a
+			>
+		</li>
+
 		{#if $user.npub}
 			<li>
 				<!-- TODO rework the second on:click stuff  -->
