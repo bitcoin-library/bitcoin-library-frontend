@@ -32,7 +32,7 @@
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="h-112 card-compact card relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card card-compact relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
@@ -66,7 +66,7 @@
 	{#if $user.npub}
 		<label
 			for="add-list-modal"
-			class="btn-circle btn mr-2 mb-2 ml-auto bg-orange-500 hover:bg-orange-500"
+			class="btn-circle btn mr-2 mb-2 mt-auto ml-auto bg-orange-500 hover:bg-orange-500"
 		>
 			<Icon style="color: black" data={plus} />
 		</label>
