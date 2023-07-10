@@ -1,8 +1,10 @@
 <script>
-	import Header from '$lib/editor/Header.svelte';
+	import Header from '$lib/Header.svelte';
 </script>
 
-<Header />
-<div class="ml-2 w-1/2">
-	<slot />
+<div>
+	<Header />
+	<div class="">
+		<slot />
+	</div>
 </div>
