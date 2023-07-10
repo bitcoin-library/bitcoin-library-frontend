@@ -1,7 +1,7 @@
 <script>
 	import SearchHeader from './Search/SearchHeader.svelte';
 	import { login } from '$lib/nostr/login.js';
-	import { user, openDetailbar } from '$lib/stores.js';
+	import { user, openDetailbar, activeMenu } from '$lib/stores.js';
 	import User from '$lib/User/Avatar.svelte';
 	import Menu from './Menu.svelte';
 
@@ -13,8 +13,9 @@
 >
 	<a
 		on:click={() => ($openDetailbar = false)}
+		on:click={() => activeMenu.reset()}
 		href="/"
-		class="text-xl font-bold">Bitcoin-Library</a
+		class="self-start text-xl font-bold">Bitcoin-Library</a
 	>
 	<div class="visible ml-auto sm:hidden">
 		<Menu />
@@ -22,15 +23,13 @@
 	<div class="hidden sm:visible sm:flex sm:flex-row ">
 		<SearchHeader />
 	</div>
-	<div>
-		<div class="">
-			<a href="/editor" class="btn">Add Resource</a>
-			{#if $user.npub}
-				<User user={$user} />
-			{:else}
-				<button class="btn" on:click={login}>Login</button>
-			{/if}
-		</div>
+	<div class="hidden gap-2 self-start sm:flex">
+		<a href="/editor" class="btn">Add Resource</a>
+		{#if $user.npub}
+			<Menu />
+		{:else}
+			<button class="btn" on:click={login}>Login</button>
+		{/if}
 	</div>
 </div>
 <div class="visible flex w-full flex-col sm:hidden">
