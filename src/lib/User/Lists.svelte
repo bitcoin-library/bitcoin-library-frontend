@@ -85,7 +85,7 @@
 					<div class="w-48">
 						<a class="underline" href={resource.uri}>
 							{#if resource.type === 'LearningResource'}
-								{(console.log(resource), '')}
+								<!-- {(console.log(resource), '')} -->
 								<p class="truncate">{resource.name}</p>
 							{:else}
 								<p class="text-xl">{resource.content}</p>

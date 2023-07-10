@@ -140,3 +140,25 @@ function createUser() {
 }
 
 export const user = createUser()
+
+
+//
+// menu
+//
+const defaultMenu = {
+  addResource: false,
+  lists: false
+}
+function createMenu() {
+  const { subscribe, set, update } = writable(defaultMenu)
+
+  return {
+    subscribe,
+    set,
+    update,
+    reset: () => {
+      set(defaultMenu)
+    }
+  }
+}
+export const activeMenu = createMenu()

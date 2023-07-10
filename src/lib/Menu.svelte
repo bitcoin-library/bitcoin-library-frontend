@@ -1,9 +1,16 @@
 <script>
 	import navicon from 'svelte-awesome/icons/navicon';
 	import { Icon } from 'svelte-awesome';
-	import { openDetailbar, selectedCard, user } from '$lib/stores.js';
+	import {
+		openDetailbar,
+		selectedCard,
+		user,
+		activeMenu
+	} from '$lib/stores.js';
 	import { login } from '$lib/nostr/login.js';
 	import User from '$lib/User/Avatar.svelte';
+
+	// TODO make global state
 </script>
 
 <div class="dropdown-end dropdown">
@@ -19,7 +26,12 @@
 	<!-- menu items -->
 	<ul
 		tabindex="0"
-		class="menu-sm dropdown-content menu rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+		on:click={() => {
+			if (document.activeElement instanceof HTMLElement) {
+				document.activeElement.blur();
+			}
+		}}
+		class="dropdown-content menu menu rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
 	>
 		<li>
 			{#if $user.npub}
@@ -37,15 +49,25 @@
 		<li><a href="/editor">Add Resource</a></li>
 		{#if $user.npub}
 			<li>
+				<!-- TODO rework the second on:click stuff  -->
 				<a
+					class:active={$activeMenu.lists}
+					on:click={() =>
+						activeMenu.update((m) => ({ ...m, lists: !m.lists }))}
 					on:click={() => {
-						if ($openDetailbar === true && Object.keys($selectedCard).length) {
+						if (
+							$openDetailbar === true &&
+							Object.values($selectedCard).some((e) => e.length)
+						) {
 							selectedCard.set({});
 							user.update((u) => ({ ...u, showDetails: true }));
 						} else if (
 							$openDetailbar === true &&
 							!Object.keys($selectedCard).length
 						) {
+							$openDetailbar = false;
+							user.update((u) => ({ ...u, showDetails: false }));
+						} else if ($openDetailbar && $user.showDetails) {
 							$openDetailbar = false;
 							user.update((u) => ({ ...u, showDetails: false }));
 						} else {
