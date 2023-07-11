@@ -5,7 +5,11 @@ import { searchTerm, searchResults, filters } from '$lib/stores';
 export const handleSearch = async (event) => {
   const result = await fetch("/api/search", {
     method: "POST",
-    body: JSON.stringify({ searchTerm: get(searchTerm), filters: get(filters) })
+    body: JSON.stringify({ searchTerm: get(searchTerm), filters: get(filters) }),
+    headers: {
+      'content-type': 'application/json'
+    }
+
   })
   const res = await result.json()
   searchResults.set(res)
