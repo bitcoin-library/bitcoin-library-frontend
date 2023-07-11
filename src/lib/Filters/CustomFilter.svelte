@@ -8,7 +8,6 @@
 	export let activeFilter;
 
 	$: activeFilter = property.attributes.some((e) => e.checked === true);
-	$: console.log($filters);
 </script>
 
 <div class="dropdown">
