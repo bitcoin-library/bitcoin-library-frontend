@@ -4,7 +4,9 @@ import resourceTypes from "$lib/bots/resourceTypes.json"
 import { nip19, generatePrivateKey, getPublicKey } from 'nostr-tools'
 
 export const searchResults = writable([])
+
 export const searchTerm = writable("")
+
 export const pagination = writable({
   current: 1
 })

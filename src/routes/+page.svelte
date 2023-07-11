@@ -1,9 +1,18 @@
 <script>
-	import { openDetailbar, selectedCard, user } from '../lib/stores';
+	import {
+		openDetailbar,
+		selectedCard,
+		user,
+		searchResults
+	} from '../lib/stores';
 	import SearchResults from '$lib/Search/SearchResults.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
 	import UserDetailbar from '$lib/User/UserDetailbar.svelte';
+
+	export let data;
+
+	searchResults.set(data.res);
 </script>
 
 <div>

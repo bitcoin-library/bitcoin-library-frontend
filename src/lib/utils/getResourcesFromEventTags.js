@@ -1,6 +1,5 @@
 
 import { getEvent } from '$lib/nostr/getEvent';
-import { getEvents } from '$lib/nostr/getEvents';
 import { searchForEventIDs } from "$lib/meili/searchForEventIDs.js"
 
 export const getResourcesFromEventTags = async (event) => {

@@ -1,6 +1,7 @@
 import { MeiliSearch } from 'meilisearch';
+import { MEILI_PW, MEILI_URL } from "$env/static/private"
 
 export const client = new MeiliSearch({
-  host: 'http://search.bitcoin-library.org/',
-  apiKey: 'MASTER_KEY'
+  host: MEILI_URL,
+  apiKey: MEILI_PW
 });

@@ -119,20 +119,6 @@
     "npub": "npub1gn7m5yfckvucdxv443maplnquvtght3srufpa4qgcf6v0whqexks8l0d6k"
   },
   {
-    "title": "Eid der Maschinen",
-    "sk": "89ed6409268999a5315f16368c72857a122c40638592fc3f7e579292358973dd",
-    "pk": "8055fdd03bd82fb205b91f150cedd094e8c3aefd26e9feabaf070f1199cd1ff0",
-    "id": "https://w3id.org/bitcoin-library/bots/ba4a4b0e-328e-480b-b636-1e48be1706d5",
-    "npub": "npub1sp2lm5pmmqhmypderu2semwsjn5v8thaym5la2a0qu83rxwdrlcqy72ap7"
-  },
-  {
-    "title": "Etatismus",
-    "sk": "5bf28223307f16288c0eac0806d55647f1bf38491818b30fca7a7b8a9553c12a",
-    "pk": "dc6f170fdedb7391c4588ab4108b23047536c3d3ec0f13fcfa564412ad5e7fec",
-    "id": "https://w3id.org/bitcoin-library/bots/a28ae4a5-f3af-4a16-a162-4e86cfb74951",
-    "npub": "npub1m3h3wr77mdeer3zc326ppzerq36nds7nas838l862ezp9t270lkq56mmt2"
-  },
-  {
     "title": "Cryptography",
     "sk": "7615dc32ab541ed35eb77cc959f4d2241f882006309b7cc2611c73a0e93ed399",
     "pk": "813f814da6d826c618d82d5106847ef7b753a15027aaac337eb450737336681d",
@@ -152,13 +138,6 @@
     "pk": "088bbd228023942efa15556db406682d9a3d2304b4aa763b1a04af972b54c603",
     "id": "https://w3id.org/bitcoin-library/bots/ca9b64e9-5add-4464-a866-86655103327c",
     "npub": "npub1pz9m6g5qyw2za7s424kmgpng9kdr6gcykj48vwc6qjhew265ccps5wpem5"
-  },
-  {
-    "title": "Anlage",
-    "sk": "3a016e5cdd4e9969812f0a6868443ee3963e5b5b42809df7c54450ab8b19aa49",
-    "pk": "0eb9aff32bbd01253e1e6752f36de0f5356a713c3c10e87bb023830b8b028955",
-    "id": "https://w3id.org/bitcoin-library/bots/28f25009-5941-4aab-9d61-17193c075d9f",
-    "npub": "npub1p6u6lueth5qj20s7vaf0xm0q756k5ufu8sgws7asywpshzcz392s3dwsa8"
   },
   {
     "title": "Environment",

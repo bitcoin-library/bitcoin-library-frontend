@@ -5,7 +5,6 @@
 	import { sortListOfObjects } from '$lib/utils.js';
 	import { removeList } from '$lib/nostr/removeList.js';
 	import { removeItemFromList } from '$lib/nostr/removeItemFromList.js';
-	import { getResourcesFromEventTags } from '$lib/utils/getResourcesFromEventTags.js';
 	import { publishNoteEvent } from '$lib/nostr/publishNoteEvent';
 	import { addResourceToLists } from '$lib/nostr/addResourceToLists';
 	import { addList } from '$lib/nostr/addList';
@@ -19,6 +18,15 @@
 	let currentList;
 	let allowEdit = false;
 	let listName;
+
+	async function fetchResourcesFromEventTags(event) {
+		const response = await fetch('/api/resources', {
+			method: 'POST',
+			body: JSON.stringify({ event })
+		});
+		const res = await response.json();
+		return res;
+	}
 
 	async function addNoteToList() {
 		const event = await publishNoteEvent(noteContent);
@@ -76,7 +84,7 @@
 				</button>
 			{/if}
 		</div>
-		{#await getResourcesFromEventTags(list) then resources}
+		{#await fetchResourcesFromEventTags(list) then resources}
 			{#each resources as resource, i}
 				<!-- We want to skip the name of the list provided by the d tag -->
 				<div
