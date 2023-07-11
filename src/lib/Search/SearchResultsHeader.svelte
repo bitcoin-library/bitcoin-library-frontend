@@ -1,6 +1,6 @@
 <script>
 	import { filters } from '$lib/stores';
-	import { handleSearch } from '$lib/meili/search';
+	import { handleSearch } from '$lib/search.js';
 	export let checked;
 </script>
 

@@ -1,20 +1,8 @@
 <script>
-	import {
-		filters,
-		openFilterbar,
-		pagination,
-		resultsPerPage,
-		searchResults,
-		searchTerm,
-		totalHits
-	} from '$lib/stores';
+	import { openFilterbar, searchTerm } from '$lib/stores';
 	import Icon from 'svelte-awesome';
 	import { close, filter } from 'svelte-awesome/icons';
-	import { handleSearch } from '$lib/meili/search';
-
-	let itemSelected = { _source: { name: '' } };
-
-	$: searchTerm.set(itemSelected?._source?.name);
+	import { handleSearch } from '$lib/search.js';
 </script>
 
 <form on:submit|preventDefault={handleSearch} class="">

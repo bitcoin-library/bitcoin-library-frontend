@@ -10,7 +10,6 @@ import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
  */
 
 export const removeItemFromList = async (list, index) => {
-  console.log(list, index)
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer
   await nip07signer.user().then(async (user) => {
@@ -24,7 +23,6 @@ export const removeItemFromList = async (list, index) => {
 
   // filter event from tags array 
   const tags = list.tags.filter((_, lIndex) => lIndex !== index + 1)
-  console.log("filtered tags", tags)
 
   event.tags = tags
   await event.sign(ndk.signer)

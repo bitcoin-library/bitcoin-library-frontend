@@ -1,10 +1,14 @@
-import { get } from 'svelte/store';
-import { resultsPerPage } from '$lib/stores';
-import { index } from '$lib/meili/index';
-import { handleSearch } from '$lib/meili/search';
-
+import { handleSearch } from '$lib/search';
 
 /** @type {import('./$types').PageLoad} */
 export async function load({ fetch }) {
-  await handleSearch();
+  const results = await fetch("/api/search", {
+    method: "POST",
+    body: JSON.stringify({}),
+    headers: {
+      'content-type': 'application/json'
+    }
+  })
+  const res = await results.json()
+  return { res }
 }

@@ -24,7 +24,6 @@ export default (bot, resource) => {
         })
       ]
     ];
-    console.log(tags)
     let event = {
       kind: 1,
       created_at: Math.floor(Date.now() / 1000),
@@ -32,7 +31,6 @@ export default (bot, resource) => {
       content: content,
       pubkey: getPublicKey(privateKey)
     };
-    console.log("event", event)
 
     event.id = getEventHash(event);
     event.sig = signEvent(event, privateKey);

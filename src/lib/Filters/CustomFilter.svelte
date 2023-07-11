@@ -2,12 +2,13 @@
 	import { filters, searchTerm } from '$lib/stores';
 	import { checkSquare, chevronDown } from 'svelte-awesome/icons'; // alternative, more efficient import
 	import Icon from 'svelte-awesome';
-	import { handleSearch } from '$lib/meili/search';
+	import { handleSearch } from '$lib/search';
 
 	export let property;
 	export let activeFilter;
 
 	$: activeFilter = property.attributes.some((e) => e.checked === true);
+	$: console.log($filters);
 </script>
 
 <div class="dropdown">

@@ -1,21 +1,26 @@
-import { index } from "$lib/meili/index"
-import { get } from "svelte/store"
-import { searchResults, searchTerm, filters } from "$lib/stores"
+import { index } from "./index"
 
-const buildFilters = (attribute, meiliFilterAttribute) => {
-  return get(filters)
+const buildFilters = (filters, attribute, meiliFilterAttribute) => {
+  return filters
     .find(e => e.id === attribute)
     .attributes
     .filter(keyword => keyword.checked)
     .map(k => `${meiliFilterAttribute} = '${k.id}'`)
 }
 
-export async function handleSearch() {
-  const search = await index.search(get(searchTerm), {
-    filter: [
-      [...buildFilters("keywords", "keywordsAsIds")],
-      [...buildFilters("resourceTypes", "resourceTypeAsIds")]
-    ]
-  });
-  searchResults.set(search.hits);
+export async function handleSearch(searchTerm, filters) {
+  if (filters.length) {
+    const search = await index.search((searchTerm), {
+      filter: [
+        [...buildFilters(filters, "keywords", "keywordsAsIds")],
+        [...buildFilters(filters, "resourceTypes", "resourceTypeAsIds")]
+      ]
+    });
+    return search.hits
+  } else {
+    const search = await index.search((searchTerm), {
+    });
+    return search.hits
+
+  }
 }

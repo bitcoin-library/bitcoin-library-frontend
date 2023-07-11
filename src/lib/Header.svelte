@@ -3,7 +3,6 @@
 	import { login } from '$lib/nostr/login.js';
 	import { user, openDetailbar, activeMenu } from '$lib/stores.js';
 	import Menu from './Menu.svelte';
-	import AddResource from './AddResource.svelte';
 </script>
 
 <div
@@ -15,15 +14,15 @@
 		href="/"
 		class="self-start text-xl font-bold">Bitcoin-Library</a
 	>
-	<div class="visible ml-auto sm:hidden">
+	<div class="visible ml-auto md:hidden">
 		<Menu />
 	</div>
-	{#if activeMenu.addResource}
-		<div class="hidden sm:visible sm:flex sm:flex-row ">
+	<div class="hidden md:visible md:flex md:flex-row ">
+		{#if !$activeMenu.addResource}
 			<SearchHeader />
-		</div>
-	{/if}
-	<div class="hidden gap-2 self-start sm:flex">
+		{/if}
+	</div>
+	<div class="hidden gap-2 self-start md:flex">
 		<a
 			href="/editor"
 			class:hidden={$activeMenu.addResource}
@@ -39,8 +38,8 @@
 </div>
 <!-- mobile view -->
 {#if !$activeMenu.addResource}
-	<div class="visible flex w-full flex-col sm:hidden">
-		<div class="m-2 justify-center sm:hidden">
+	<div class="visible flex w-full flex-col md:hidden">
+		<div class="m-2 justify-center md:hidden">
 			<SearchHeader />
 		</div>
 	</div>

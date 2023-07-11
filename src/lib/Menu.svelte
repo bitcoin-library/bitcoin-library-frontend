@@ -9,12 +9,9 @@
 	} from '$lib/stores.js';
 	import { login } from '$lib/nostr/login.js';
 	import User from '$lib/User/Avatar.svelte';
-	import AddResource from './AddResource.svelte';
-
-	$: console.log($activeMenu);
 </script>
 
-<div class="dropdown-end dropdown">
+<div class="dropdown dropdown-end">
 	<label tabindex="0" class="btn-ghost btn-circle avatar btn">
 		<button class="btn-circle btn">
 			{#if $user.npub}
