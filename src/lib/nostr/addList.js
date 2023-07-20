@@ -5,6 +5,7 @@ import { get } from "svelte/store";
 // Import the package, NIP-07 signer and NDK event
 import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
 import { relays } from "$lib/nostr/ndk.js";
+import { generateShortId } from "$lib/utils.js";
 
 export const addList = async (listName) => {
   // FIXME reuse ndk object from ndk.js
@@ -19,7 +20,8 @@ export const addList = async (listName) => {
   event.kind = 30001;
   event.content = "";
   event.tags = [
-    ["d", listName]
+    ["d", generateShortId(length = 16)],
+    ["name", listName]
   ]
   await event.sign(ndk.signer)
   await ndk.publish(event)

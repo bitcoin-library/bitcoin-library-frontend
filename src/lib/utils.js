@@ -19,10 +19,10 @@ export function getSelecetedBotsFromMetadata(resData, bots) {
   return selectedBots;
 }
 
-export function generateShortId() {
+export function generateShortId(length = 8) {
   let chars = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
   let result = '';
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < length; i++) {
     result += chars[Math.floor(Math.random() * chars.length)];
   }
   return result;

@@ -4,6 +4,7 @@ import { json } from '@sveltejs/kit';
 
 /** @type {import('./$types').RequestHandler} */
 export async function POST({ request }) {
+  console.log("resources endpoint")
   const { event } = await request.json()
 
   const resources = await getResourcesFromEventTags(event)

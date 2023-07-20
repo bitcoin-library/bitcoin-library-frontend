@@ -3,8 +3,9 @@ import { getEvent } from '$lib/nostr/getEvent';
 import { searchForEventIDs } from "$lib/meili/searchForEventIDs.js"
 
 export const getResourcesFromEventTags = async (event) => {
+  console.log("getResourcesFromEventTags")
   const tagsOfBookmarkedEvents = event.tags
-    .filter(t => t[0] !== "d")
+    .filter(t => t[0] !== "d" && t[0] !== "name")
     .map(t => t[1])
 
   // fetch events from meili by event ids and render them

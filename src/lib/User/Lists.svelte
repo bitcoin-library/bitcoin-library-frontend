@@ -8,6 +8,7 @@
 	import { publishNoteEvent } from '$lib/nostr/publishNoteEvent';
 	import { addResourceToLists } from '$lib/nostr/addResourceToLists';
 	import { addList } from '$lib/nostr/addList';
+	import { getListNameFromTags } from '$lib/utils/getListNameFromTags';
 
 	import { plus, pencil, shareAlt } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
@@ -32,6 +33,7 @@
 		const event = await publishNoteEvent(noteContent);
 		await addResourceToLists([currentList.id], event.id, index);
 	}
+
 	$: listsToShow = selectedListIDs.length
 		? lists.filter((l) => selectedListIDs.includes(l.id))
 		: lists;
@@ -56,7 +58,7 @@
 			<p class="text-xl font-bold">
 				#
 				<a href="/b/{list.id}" class="underline">
-					{list.tags.find((l) => l[0] === 'd')[1]}
+					{getListNameFromTags(list.tags)}
 				</a>
 			</p>
 			<button class="mr-auto ml-2">
@@ -102,7 +104,7 @@
 					</div>
 					{#if allowEdit}
 						<button
-							on:click={removeItemFromList(list, i)}
+							on:click={removeItemFromList(list, resource)}
 							class="btn-sm btn-circle btn ml-auto mr-1 bg-red-500"
 						>
 							<svg

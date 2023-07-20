@@ -4,6 +4,8 @@
 	import { plus, check } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
 	import { addResourceToLists } from '$lib/nostr/addResourceToLists.js';
+	import { getListNameFromTags } from '$lib/utils/getListNameFromTags';
+	import { getListId } from '$lib/nostr/lists/utils.js';
 
 	export let item;
 	let modalOpen = false;
@@ -32,7 +34,7 @@
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="h-112 card card-compact relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card-compact card relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
@@ -67,6 +69,7 @@
 		<label
 			for="add-list-modal"
 			class="btn-circle btn mr-2 mb-2 mt-auto ml-auto bg-orange-500 hover:bg-orange-500"
+			on:click={() => selectedCard.set(item)}
 		>
 			<Icon style="color: black" data={plus} />
 		</label>
@@ -82,20 +85,20 @@
 			class="btn-sm btn-circle btn absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Select the lists to add this resource!</h3>
-		{#each $user.lists as list (list.id)}
+		{#each $user.lists as list (getListId(list))}
 			<div
-				on:click={handleListSelect(list.id)}
+				on:click={handleListSelect(getListId(list))}
 				class="m-2 flex flex-row items-center rounded border border-solid border-white p-2 hover:bg-orange-500 hover:text-black"
-				class:bg-orange-500={selectedLists.includes(list.id)}
-				class:text-black={selectedLists.includes(list.id)}
+				class:bg-orange-500={selectedLists.includes(getListId(list))}
+				class:text-black={selectedLists.includes(getListId(list))}
 			>
 				<p class="text-xl font-bold">
 					#
 					<span class="underline">
-						{list.tags.find((l) => l[0] === 'd')[1]}
+						{getListNameFromTags(list.tags)}
 					</span>
 				</p>
-				{#if selectedLists.includes(list.id)}
+				{#if selectedLists.includes(getListId(list))}
 					<Icon class="ml-auto mr-2" style="color: black;" data={check} />
 				{/if}
 			</div>
@@ -103,7 +106,7 @@
 		<label
 			class="btn"
 			on:click={addResourceToLists(selectedLists, $selectedCard.eventID)}
-			>Add Resource To Lists</label
+			on:click={() => (selectedLists = [])}>Add Resource To Lists</label
 		>
 	</div>
 </div>

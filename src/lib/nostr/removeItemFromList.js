@@ -9,7 +9,7 @@ import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
  *
  */
 
-export const removeItemFromList = async (list, index) => {
+export const removeItemFromList = async (list, resource) => {
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer
   await nip07signer.user().then(async (user) => {
@@ -22,12 +22,11 @@ export const removeItemFromList = async (list, index) => {
   event.content = "remove item from list";
 
   // filter event from tags array 
-  const tags = list.tags.filter((_, lIndex) => lIndex !== index + 1)
+  const tags = list.tags.filter((t) => t[1] !== resource.eventID)
 
   event.tags = tags
   await event.sign(ndk.signer)
   await ndk.publish(event)
-  console.log("removed list item from list")
   // // update lists
   await user.updateLists(ndk, get(user).pk)
 }

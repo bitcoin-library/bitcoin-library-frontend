@@ -125,13 +125,14 @@ function createUser() {
       const npub = nip19.npubEncode(pk)
       const nUser = ndk.getUser({ npub: npub })
       await nUser.fetchProfile()
-      const filter = { kinds: [30001], authors: [pk] };
-      const lists = await ndk.fetchEvents(filter);
+      const listFilter = { kinds: [30001], authors: [pk] };
+      const lists = await ndk.fetchEvents(listFilter);
       update(u => ({ ...u, pk: pk, npub: npub, profile: nUser.profile, lists: [...lists] }))
     },
     updateLists: async (ndk, pk) => {
       const filter = { kinds: [30001], authors: [pk] };
       const lists = await ndk.fetchEvents(filter);
+      console.log("got these lists in updateLists", lists)
       update(u => ({ ...u, lists: [...lists] }))
     },
     reset: () => {
