@@ -6,7 +6,7 @@
 </script>
 
 <form on:submit|preventDefault={handleSearch} class="">
-	<div class="form-control flex flex-row gap-2">
+	<div class="form-control flex flex-col gap-2 sm:flex-row">
 		<div class="input-group">
 			<input
 				type="text"
