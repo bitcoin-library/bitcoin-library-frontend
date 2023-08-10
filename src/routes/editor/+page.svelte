@@ -183,7 +183,7 @@
 					{#each events as event}
 						<li class="ml-4 list-disc">
 							<a
-								href="https://iris.to/{genNpub(event.pubkey)}"
+								href="https://primal.net/p/{genNpub(event.pubkey)}"
 								target="_blank"
 							>
 								{bots.find((b) => b.pk === event.pubkey)?.title ||
