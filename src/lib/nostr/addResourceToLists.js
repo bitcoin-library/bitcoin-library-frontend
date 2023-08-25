@@ -1,6 +1,4 @@
-
-// import { NDKEvent } from "@nostr-dev-kit/ndk";
-import { ndk } from "./ndk.js";
+import { ndkStore } from "$lib/stores/ndk.js";
 import { user } from "$lib/stores.js";
 import { get } from "svelte/store";
 import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
@@ -11,7 +9,7 @@ import { getSelectedListFromID, getListName, getListEvents } from "./lists/utils
  * @param {string} resourceEventId - Id of the event to add to the list
  */
 export const addResourceToLists = async (selectedListIDs, resourceEventId, index = null) => {
-  // FIXME reuse ndk object from ndk.js
+  const ndk = get(ndkStore);
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer
   await nip07signer.user().then(async (user) => {
@@ -42,7 +40,7 @@ export const addResourceToLists = async (selectedListIDs, resourceEventId, index
       ]
     }
     await event.sign(ndk.signer)
-    await ndk.publish(event)
+    await event.publish(event)
     // update lists
   });
   await Promise.all(promises)

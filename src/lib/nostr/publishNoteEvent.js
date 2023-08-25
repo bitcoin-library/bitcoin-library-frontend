@@ -1,13 +1,14 @@
 
 
 // import { NDKEvent } from "@nostr-dev-kit/ndk";
-import { ndk } from "./ndk.js";
+import { ndkStore } from "$lib/stores/ndk.js";
 import { user } from "$lib/stores.js";
 import { get } from "svelte/store";
 import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
 
 // selected lists is array of list ids
 export const publishNoteEvent = async (content) => {
+  const ndk = get(ndkStore)
   // FIXME reuse ndk object from ndk.js
   const nip07signer = new NDKNip07Signer();
   ndk.signer = nip07signer

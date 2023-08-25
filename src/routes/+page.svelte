@@ -1,37 +1,38 @@
 <script>
-	import {
-		openDetailbar,
-		selectedCard,
-		user,
-		searchResults
-	} from '../lib/stores';
+	import { selectedCard, user, searchResults } from '../lib/stores';
 	import SearchResults from '$lib/Search/SearchResults.svelte';
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
-	import UserDetailbar from '$lib/User/UserDetailbar.svelte';
 
 	export let data;
 
 	searchResults.set(data.res);
+
+	$: console.log($selectedCard);
 </script>
 
 <div>
 	<Header />
-	<div class="flex">
-		<div
-			class={$openDetailbar ? 'hidden basis-full sm:basis-2/3' : 'basis-full'}
-		>
-			<SearchResults />
-		</div>
-		{#if $openDetailbar}
-			<div class="flex w-full">
-				{#if $user.showDetails}
-					<UserDetailbar />
-				{:else}
-					<Detailbar item={$selectedCard} />
-				{/if}
+	<div class="flex flex-row">
+		<div class="drawer drawer-end">
+			<input
+				checked={$selectedCard.id}
+				id="my-drawer"
+				type="checkbox"
+				class="drawer-toggle"
+			/>
+			<div class="drawer-content">
+				<!-- Page content here -->
+				<SearchResults />
 			</div>
-		{/if}
+			<div class="drawer-side">
+				<label for="my-drawer" class="drawer-overlay" />
+				<ul class="menu h-full w-1/3 bg-base-200 p-4 text-base-content">
+					<!-- Sidebar content here -->
+					<Detailbar item={$selectedCard} />
+				</ul>
+			</div>
+		</div>
 	</div>
 </div>
 

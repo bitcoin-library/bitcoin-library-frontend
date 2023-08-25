@@ -11,9 +11,9 @@
 	import User from '$lib/User/Avatar.svelte';
 </script>
 
-<div class="dropdown dropdown-end">
-	<label tabindex="0" class="btn-ghost btn-circle avatar btn">
-		<button class="btn-circle btn">
+<div class="dropdown-end dropdown">
+	<label class="avatar btn btn-circle btn-ghost">
+		<button class="btn btn-circle">
 			{#if $user.npub}
 				<User user={$user} />
 			{:else}
@@ -23,7 +23,6 @@
 	</label>
 	<!-- menu items -->
 	<ul
-		tabindex="0"
 		on:click={() => {
 			if (document.activeElement instanceof HTMLElement) {
 				document.activeElement.blur();
@@ -63,27 +62,7 @@
 					class:active={$activeMenu.lists}
 					on:click={() =>
 						activeMenu.update((m) => ({ ...m, lists: !m.lists }))}
-					on:click={() => {
-						if (
-							$openDetailbar === true &&
-							Object.values($selectedCard).some((e) => e.length)
-						) {
-							selectedCard.set({});
-							user.update((u) => ({ ...u, showDetails: true }));
-						} else if (
-							$openDetailbar === true &&
-							!Object.keys($selectedCard).length
-						) {
-							$openDetailbar = false;
-							user.update((u) => ({ ...u, showDetails: false }));
-						} else if ($openDetailbar && $user.showDetails) {
-							$openDetailbar = false;
-							user.update((u) => ({ ...u, showDetails: false }));
-						} else {
-							$openDetailbar = true;
-							user.update((u) => ({ ...u, showDetails: true }));
-						}
-					}}>My Lists</a
+					href="/{$user.npub}">My Lists</a
 				>
 			</li>
 		{/if}

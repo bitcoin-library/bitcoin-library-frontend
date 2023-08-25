@@ -1,6 +1,6 @@
 <script>
 	import { user, openDetailbar, selectedCard } from '$lib/stores';
-	import Tags from './Resource/Tags.svelte';
+	import Tags from '$lib/Resource/Tags.svelte';
 	import { plus, check } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
 	import { addResourceToLists } from '$lib/nostr/addResourceToLists.js';
@@ -34,19 +34,15 @@
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="h-112 card-compact card relative m-2 w-80  bg-base-100 hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card card-compact relative m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
 >
-	<div
-		on:click={() => ($openDetailbar = true)}
-		on:click={() => user.update((u) => ({ ...u, showDetails: false }))}
-		on:click={() => selectedCard.set(item)}
-	>
+	<div on:click={() => selectedCard.set(item)}>
 		<!-- only display if item.last updated is not older than a week  -->
 		{#if item.updated_at > Date.now() - 86400000}
-			<div class="po badge-secondary badge absolute top-2 right-6">NEW</div>
+			<div class="po badge badge-secondary absolute right-6 top-2">NEW</div>
 		{/if}
 		<figure>
 			<img
@@ -68,7 +64,7 @@
 	{#if $user.npub}
 		<label
 			for="add-list-modal"
-			class="btn-circle btn mr-2 mb-2 mt-auto ml-auto bg-orange-500 hover:bg-orange-500"
+			class="btn btn-circle mb-2 ml-auto mr-2 mt-auto bg-orange-500 hover:bg-orange-500"
 			on:click={() => selectedCard.set(item)}
 		>
 			<Icon style="color: black" data={plus} />
@@ -82,7 +78,7 @@
 	<div class="modal-box relative">
 		<label
 			for="add-list-modal"
-			class="btn-sm btn-circle btn absolute right-2 top-2">✕</label
+			class="btn btn-circle btn-sm absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Select the lists to add this resource!</h3>
 		{#each $user.lists as list (getListId(list))}

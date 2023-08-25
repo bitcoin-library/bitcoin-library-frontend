@@ -1,6 +1,6 @@
 <script>
 	import { searchResults, totalHits, filters } from '$lib/stores';
-	import Card from '$lib/Card.svelte';
+	import Card from '$lib/Resource/Card.svelte';
 	import SearchResultsHeader from './SearchResultsHeader.svelte';
 	import Pagination from '$lib/Pagination.svelte';
 	let results;

@@ -97,12 +97,7 @@ export const filters = createFilters()
 
 export const openDetailbar = writable(false);
 export const openFilterbar = writable(false);
-export const selectedCard = writable({
-  keywords: [],
-  authors: [],
-  metadataContributors: []
-})
-
+export const selectedCard = writable({})
 
 // user
 
