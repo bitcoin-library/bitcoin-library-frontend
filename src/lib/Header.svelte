@@ -12,7 +12,7 @@
 
 <!-- z-index puts navbar behind overlay -->
 <div
-	class="z-100 navbar top-0 flex flex-row justify-between gap-2 bg-base-100 sm:sticky"
+	class="navbar top-0 z-10 flex flex-row justify-between gap-2 bg-base-100 sm:sticky"
 >
 	<a
 		on:click={() => ($openDetailbar = false)}
