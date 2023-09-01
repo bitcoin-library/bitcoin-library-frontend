@@ -1,21 +1,21 @@
 <script>
 	import navicon from 'svelte-awesome/icons/navicon';
 	import { Icon } from 'svelte-awesome';
-	import {
-		openDetailbar,
-		selectedCard,
-		user,
-		activeMenu
-	} from '$lib/stores.js';
+	import { user, activeMenu } from '$lib/stores/user.js';
 	import { login } from '$lib/nostr/login.js';
-	import User from '$lib/User/Avatar.svelte';
+	import { ndkStore as ndk } from '$lib/stores/ndk';
+	import { Avatar } from '@nostr-dev-kit/ndk-svelte-components';
 </script>
 
-<div class="dropdown-end dropdown">
+<div class="dropdown dropdown-end">
 	<label class="avatar btn btn-circle btn-ghost">
 		<button class="btn btn-circle">
 			{#if $user.npub}
-				<User user={$user} />
+				<Avatar
+					ndk={$ndk}
+					pubkey={$user.pk}
+					class="h-14 w-14 rounded-full border border-zinc-200 dark:border-zinc-800"
+				/>
 			{:else}
 				<Icon data={navicon} />
 			{/if}
@@ -28,19 +28,11 @@
 				document.activeElement.blur();
 			}
 		}}
-		class="dropdown-content menu menu rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+		class="menu menu dropdown-content rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
 	>
 		<li>
-			{#if $user.npub}
-				<a
-					on:click={() => {
-						user.reset();
-					}}
-				>
-					Logout
-				</a>
-			{:else}
-				<a on:click={login}>Login</a>
+			{#if !$user.npub}
+				<button on:click={login}>Login</button>
 			{/if}
 		</li>
 		<li>
@@ -64,6 +56,12 @@
 						activeMenu.update((m) => ({ ...m, lists: !m.lists }))}
 					href="/{$user.npub}">My Lists</a
 				>
+			</li>
+		{/if}
+
+		{#if $user.npub}
+			<li>
+				<button on:click={() => user.reset()}>Logout</button>
 			</li>
 		{/if}
 	</ul>

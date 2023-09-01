@@ -14,6 +14,7 @@ function createListStore() {
       const listsForUser = await getListsForUser(pubkey)
       console.log("listsForUser", listsForUser)
       set(listsForUser)
+      return sortLists(listsForUser)
     },
     toggleExpanded: async (listId) => {
       update(lists => {
@@ -26,6 +27,11 @@ function createListStore() {
   }
 }
 
+/**
+ * @property {string} event
+ * @property {string} eventId
+ * @property {string} id
+ */
 export const listStore = createListStore()
 
 const supportedKinds = [
@@ -109,3 +115,13 @@ const listIdForListEvent = (event) => {
   if (event.kind === 30000 || event.kind === 30001) id = event.tagId();
   return id;
 }
+
+const sortLists = (list) => {
+  list.sort((a, b) => {
+    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;
+    return 0;
+  });
+  return list
+}
+

@@ -4,14 +4,14 @@
 	import ListItem from '$lib/ListItem.svelte';
 	// import { Tooltip } from 'flowbite-svelte';
 	// import ZapPopover from './ZapPopover.svelte';
-	import { user as currentUser } from '$lib/stores.js';
+	import { user as currentUser } from '$lib/stores/user.js';
 	import { ndkStore as ndk } from '$lib/stores/ndk';
 	import { NDKEvent, NDKNip07Signer } from '@nostr-dev-kit/ndk';
 	// import ItemsOptionsPopover from '$lib/components/ItemsOptionsPopover.svelte';
 	import { unixTimeNow } from '$lib/utils/helpers';
 	import HeartIcon from '$lib/elements/icons/Heart.svelte';
 	import { listStore, allowListEdit } from '$lib/stores/lists.js';
-	import { removeList } from '$lib/nostr/removeList.js';
+	import { removeList } from '$lib/utils/lists/removeList';
 
 	export let list;
 
@@ -118,9 +118,11 @@
 			<button on:click={() => listStore.toggleExpanded(list.id)}>
 				<ChevronIcon bind:expanded={list.expanded} />
 			</button>
-			<a href="/a/{list.nip19}">
+			<!-- TODO copy this shamelessly from listr.io -->
+			<!-- <a class="break-words" href="/a/{list.nip19}"> -->
+			<span class="break-words">
 				{list.name}
-			</a>
+			</span>
 		</h2>
 		<InfoIcon />
 		<!-- <Tooltip -->

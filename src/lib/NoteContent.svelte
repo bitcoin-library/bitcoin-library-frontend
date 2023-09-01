@@ -2,7 +2,7 @@
 	import { ndkStore as ndk } from '$lib/stores/ndk';
 	import { parseContent } from '$lib/utils/nip27';
 	import { truncatedBech } from '$lib/utils/helpers';
-	import { getUser } from './User';
+	import { getUser } from '$lib/utils/user';
 
 	export let note;
 	export let tags;

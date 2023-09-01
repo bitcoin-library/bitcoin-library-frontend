@@ -1,6 +1,6 @@
 import { ndkStore } from "$lib/stores/ndk.js";
 import { listStore } from "$lib/stores/lists";
-import { user } from "$lib/stores.js";
+import { user } from "$lib/stores/user.js";
 import { get } from "svelte/store";
 import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
 
@@ -23,5 +23,6 @@ export const addList = async (listName) => {
   await event.publish()
   console.log("published list")
   // update lists
-  listStore.getListsForUser(get(user).pk)
+  await listStore.getListsForUser(get(user).pk)
+  await user.updateLists(get(user).pk)
 }

@@ -1,6 +1,6 @@
 <script>
-	import { filters } from '$lib/stores';
-	import { handleSearch } from '$lib/search.js';
+	import { filters } from '$lib/stores/search.js';
+	import { submitSearch } from '$lib/meili/submitSearch.js';
 	export let checked;
 </script>
 
@@ -12,9 +12,9 @@
 				<div
 					on:click={() => {
 						filters.toggleFilter(filter.id, attribute);
-						handleSearch();
+						submitSearch();
 					}}
-					class="badge-warning badge mx-1 cursor-pointer gap-2"
+					class="badge badge-warning mx-1 cursor-pointer gap-2"
 				>
 					<svg
 						xmlns="http://www.w3.org/2000/svg"
@@ -36,10 +36,10 @@
 
 	{#if checked && checked.length}
 		<button
-			class="btn-xs btn ml-2 cursor-pointer"
+			class="btn btn-xs ml-2 cursor-pointer"
 			on:click={() => {
 				filters.resetAll();
-				handleSearch();
+				submitSearch();
 			}}>Remove all filters</button
 		>
 	{/if}

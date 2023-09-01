@@ -1,17 +1,15 @@
-import { writable, derived } from "svelte/store";
+import { writable, derived, get } from "svelte/store";
 import keywords from "$lib/bots/keywords.json"
 import resourceTypes from "$lib/bots/resourceTypes.json"
-import { nip19, generatePrivateKey, getPublicKey } from 'nostr-tools'
 
+export const openFilterbar = writable(false);
 export const searchResults = writable([])
-
 export const searchTerm = writable("")
-
 export const pagination = writable({
-  current: 1
+  current: 1,
+  resultsPerPage: 12
 })
-export const resultsPerPage = writable(12)
-export const totalHits = derived(searchResults, $searchResults => $searchResults.length)
+export const totalHits = writable(0)
 
 const botsToFilters = (bots) => {
   const sortedBots = [...bots].sort((a, b) => {
@@ -94,69 +92,3 @@ function createFilters() {
 
 // Filter stuff
 export const filters = createFilters()
-
-export const openDetailbar = writable(false);
-export const openFilterbar = writable(false);
-export const selectedCard = writable({})
-
-// user
-
-const defaultUser = {
-  pk: "",
-  npub: "",
-  lists: [],
-  showDetails: false,
-  profile: {}
-}
-
-function createUser() {
-  const { subscribe, set, update } = writable(defaultUser)
-
-  return {
-    subscribe,
-    set,
-    update,
-    setUser: async (ndk, pk) => {
-      const npub = nip19.npubEncode(pk)
-      const nUser = ndk.getUser({ npub: npub })
-      await nUser.fetchProfile()
-      const listFilter = { kinds: [30001], authors: [pk] };
-      const lists = await ndk.fetchEvents(listFilter);
-      update(u => ({ ...u, pk: pk, npub: npub, profile: nUser.profile, lists: [...lists] }))
-    },
-    updateLists: async (ndk, pk) => {
-      const filter = { kinds: [30001], authors: [pk] };
-      const lists = await ndk.fetchEvents(filter);
-      console.log("got these lists in updateLists", lists)
-      update(u => ({ ...u, lists: [...lists] }))
-    },
-    reset: () => {
-      openDetailbar.set(false)
-      set(defaultUser)
-    }
-  }
-}
-
-export const user = createUser()
-
-
-//
-// menu
-//
-const defaultMenu = {
-  addResource: false,
-  lists: false
-}
-function createMenu() {
-  const { subscribe, set, update } = writable(defaultMenu)
-
-  return {
-    subscribe,
-    set,
-    update,
-    reset: () => {
-      set(defaultMenu)
-    }
-  }
-}
-export const activeMenu = createMenu()

@@ -1,6 +1,5 @@
-import { user } from "$lib/stores.js";
+import { user } from "$lib/stores/user.js";
 import { ndkStore } from "$lib/stores/ndk.js";
-import { nip19, generatePrivateKey, getPublicKey } from 'nostr-tools'
 import { get } from "svelte/store";
 
 export const login = async () => {

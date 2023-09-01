@@ -1,12 +1,18 @@
 <script>
 	import SearchHeader from './Search/SearchHeader.svelte';
 	import { login } from '$lib/nostr/login.js';
-	import { user, openDetailbar, activeMenu } from '$lib/stores.js';
+	import {
+		user,
+		openDetailbar,
+		activeMenu,
+		selectedCard
+	} from '$lib/stores/user.js';
 	import Menu from './Menu.svelte';
 </script>
 
+<!-- z-index puts navbar behind overlay -->
 <div
-	class="navbar sticky top-0 z-50 flex flex-row justify-between gap-2 bg-base-100"
+	class="z-100 navbar top-0 flex flex-row justify-between gap-2 bg-base-100 sm:sticky"
 >
 	<a
 		on:click={() => ($openDetailbar = false)}
@@ -17,7 +23,7 @@
 	<div class="visible ml-auto md:hidden">
 		<Menu />
 	</div>
-	<div class="hidden md:visible md:flex md:flex-row ">
+	<div class="hidden md:visible md:flex md:flex-row">
 		{#if !$activeMenu.addResource}
 			<SearchHeader />
 		{/if}

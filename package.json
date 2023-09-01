@@ -37,6 +37,7 @@
     "jsdom": "^22.0.0",
     "meilisearch": "^0.32.0",
     "nostr-tools": "^1.14.0",
-    "svelte-awesome": "^3.0.1"
+    "svelte-awesome": "^3.0.1",
+    "typescript": "^5.2.2"
   }
 }

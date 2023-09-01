@@ -1,21 +1,16 @@
 <script>
-	import { searchResults, totalHits, filters } from '$lib/stores';
+	import { searchResults, totalHits, filters } from '$lib/stores/search.js';
 	import Card from '$lib/Resource/Card.svelte';
 	import SearchResultsHeader from './SearchResultsHeader.svelte';
-	import Pagination from '$lib/Pagination.svelte';
-	let results;
+	import Pagination from '$lib/Search/Pagination.svelte';
 	let checked = [];
-
-	searchResults.subscribe((res) => {
-		results = res;
-	});
 
 	$: checked = $filters
 		.map((f) => f.attributes.filter((a) => a.checked))
 		.flat();
 </script>
 
-<div class="no-scrollbar h-screen overflow-auto">
+<div>
 	<div class="flex flex-row items-center">
 		<p class="ml-6 mr-2">
 			<span class="font-semibold">{$totalHits}</span>
@@ -28,8 +23,8 @@
 	</div>
 
 	<div class="flex flex-wrap justify-center gap-2">
-		{#if results.length}
-			{#each results as result}
+		{#if $searchResults.length}
+			{#each $searchResults as result}
 				<Card item={result} />
 			{/each}
 		{:else}
@@ -37,5 +32,5 @@
 		{/if}
 	</div>
 
-	<!-- <Pagination /> -->
+	<Pagination />
 </div>

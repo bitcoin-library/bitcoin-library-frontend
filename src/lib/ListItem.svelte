@@ -3,7 +3,7 @@
 	import XMarkIcon from '$lib/elements/icons/XMark.svelte';
 	import { nip19 } from 'nostr-tools';
 	// import ItemOptionsPopover from './ItemsOptionsPopover.svelte';
-	import { user as currentUser } from '$lib/stores.js';
+	import { user as currentUser } from '$lib/stores/user.js';
 	import { createEventDispatcher } from 'svelte';
 	import { page } from '$app/stores';
 	import NoteComponent from '$lib/NoteComponent.svelte';

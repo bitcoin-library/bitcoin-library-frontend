@@ -1,6 +1,6 @@
 
 import { ndkStore } from "$lib/stores/ndk.js";
-import { user } from "$lib/stores.js";
+import { user } from "$lib/stores/user.js";
 import { get } from "svelte/store";
 // Import the package, NIP-07 signer and NDK event
 import NDK, { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
@@ -27,7 +27,7 @@ export const removeItemFromList = async (list, resource) => {
 
   event.tags = tags
   await event.sign(ndk.signer)
-  await ndk.publish(event)
+  await event.publish()
   // // update lists
   await user.updateLists(ndk, get(user).pk)
 }

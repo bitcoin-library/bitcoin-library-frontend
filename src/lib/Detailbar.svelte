@@ -1,33 +1,22 @@
 <script>
-	import { openDetailbar, selectedCard } from '$lib/stores';
+	import { openDetailbar, selectedCard } from '$lib/stores/user.js';
 	import Authors from '$lib/Resource/Authors.svelte';
 	import Tags from './Resource/Tags.svelte';
+	import XMark from './elements/icons/XMark.svelte';
 
 	export let item;
 </script>
 
 {#if Object.keys($selectedCard).length}
-	<div class="no-scrollbar sticky top-0 mx-4 mb-4 h-screen overflow-auto">
+	<div class="">
 		<div class="flex">
 			<button
-				class="btn-circle btn ml-auto mb-4"
+				class="btn btn-circle mb-4 ml-auto"
 				on:click={() => {
 					selectedCard.set({});
 				}}
 			>
-				<svg
-					xmlns="http://www.w3.org/2000/svg"
-					class="h-6 w-6"
-					fill="none"
-					viewBox="0 0 24 24"
-					stroke="currentColor"
-					><path
-						stroke-linecap="round"
-						stroke-linejoin="round"
-						stroke-width="2"
-						d="M6 18L18 6M6 6l12 12"
-					/></svg
-				>
+				<XMark />
 			</button>
 		</div>
 
@@ -46,7 +35,7 @@
 
 		<h1 class="mt-3 text-xl font-bold">{item.name}</h1>
 
-		<p class="mt-5 mb-5">{item.description}</p>
+		<p class="mb-5 mt-5">{item.description}</p>
 
 		<Authors
 			authors={item.authors &&

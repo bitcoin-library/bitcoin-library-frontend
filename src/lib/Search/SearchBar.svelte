@@ -1,22 +1,22 @@
 <script>
-	import { openFilterbar, searchTerm } from '$lib/stores';
+	import { openFilterbar, searchTerm } from '$lib/stores/search.js';
 	import Icon from 'svelte-awesome';
 	import { close, filter } from 'svelte-awesome/icons';
-	import { handleSearch } from '$lib/search.js';
+	import { submitSearch } from '$lib/meili/submitSearch.js';
 </script>
 
-<form on:submit|preventDefault={handleSearch} class="">
+<form on:submit|preventDefault={submitSearch} class="">
 	<div class="form-control flex flex-col gap-2 sm:flex-row">
 		<div class="input-group">
 			<input
 				type="text"
 				placeholder="Search…"
-				class="input-bordered input"
+				class="input input-bordered"
 				bind:value={$searchTerm}
-				on:change={handleSearch}
-				on:input={handleSearch}
+				on:change={submitSearch}
+				on:input={submitSearch}
 			/>
-			<button class="btn-square btn" on:click={handleSearch}>
+			<button class="btn btn-square" on:click={submitSearch}>
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					class="h-6 w-6"

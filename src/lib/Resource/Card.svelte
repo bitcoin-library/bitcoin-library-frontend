@@ -1,18 +1,13 @@
 <script>
-	import { user, openDetailbar, selectedCard } from '$lib/stores';
+	import { user, selectedCard } from '$lib/stores/user.js';
 	import Tags from '$lib/Resource/Tags.svelte';
 	import { plus, check } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
-	import { addResourceToLists } from '$lib/nostr/addResourceToLists.js';
-	import { getListNameFromTags } from '$lib/utils/getListNameFromTags';
-	import { getListId } from '$lib/nostr/lists/utils.js';
+	import { addResourceToLists } from '$lib/utils/lists/addResourceToLists';
 
 	export let item;
 	let modalOpen = false;
 	const bordered = 'border-2 border-orange-500';
-	function toggleModal() {
-		modalOpen = !modalOpen;
-	}
 
 	// Shorten a string to less than maxLen characters without truncating words.
 	function shorten(str = '', maxLen, separator = ' ') {
@@ -34,7 +29,7 @@
 <!-- TODO make flex column and assign space values -->
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="h-112 card card-compact relative m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card-compact card relative m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
@@ -81,24 +76,44 @@
 			class="btn btn-circle btn-sm absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Select the lists to add this resource!</h3>
-		{#each $user.lists as list (getListId(list))}
-			<div
-				on:click={handleListSelect(getListId(list))}
-				class="m-2 flex flex-row items-center rounded border border-solid border-white p-2 hover:bg-orange-500 hover:text-black"
-				class:bg-orange-500={selectedLists.includes(getListId(list))}
-				class:text-black={selectedLists.includes(getListId(list))}
-			>
-				<p class="text-xl font-bold">
-					#
-					<span class="underline">
-						{getListNameFromTags(list.tags)}
-					</span>
-				</p>
-				{#if selectedLists.includes(getListId(list))}
-					<Icon class="ml-auto mr-2" style="color: black;" data={check} />
+		{#if $user.pk}
+			{#each $user.lists as list}
+				<!-- check if the resource is already on the list -->
+				{#if list.publicItems.some((listItem) => listItem[1] === $selectedCard.eventID)}
+					<div
+						class="m-2 flex flex-row items-center rounded border border-solid border-white bg-green-500 p-2 text-black"
+					>
+						<p class="text-xl font-bold">
+							#
+							<span class="underline">
+								{list.name}
+							</span>
+						</p>
+						<Icon class="ml-auto mr-2" style="color: black;" data={check} />
+					</div>
+				{:else}
+					<div
+						on:click={handleListSelect(list.eventId)}
+						class="m-2 flex flex-row items-center rounded border border-solid border-white p-2 hover:bg-orange-500 hover:text-black"
+						class:bg-green-500={list.publicItems.some(
+							(listItem) => listItem[1] === $selectedCard.eventID
+						)}
+						class:bg-orange-500={selectedLists.includes(list.eventId)}
+						class:text-black={selectedLists.includes(list.eventId)}
+					>
+						<p class="text-xl font-bold">
+							#
+							<span class="underline">
+								{list.name}
+							</span>
+						</p>
+						{#if selectedLists.includes(list.eventId)}
+							<Icon class="ml-auto mr-2" style="color: black;" data={check} />
+						{/if}
+					</div>
 				{/if}
-			</div>
-		{/each}
+			{/each}
+		{/if}
 		<label
 			class="btn"
 			on:click={addResourceToLists(selectedLists, $selectedCard.eventID)}

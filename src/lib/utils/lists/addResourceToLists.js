@@ -1,12 +1,12 @@
 import { ndkStore } from "$lib/stores/ndk.js";
-import { user } from "$lib/stores.js";
+import { user } from "$lib/stores/user.js";
 import { get } from "svelte/store";
 import { NDKNip07Signer, NDKEvent } from "@nostr-dev-kit/ndk";
-import { getSelectedListFromID, getListName, getListEvents } from "./lists/utils.js";
 
 /**
- * @param {string[]} selectedListIDs - List ids
- * @param {string} resourceEventId - Id of the event to add to the list
+ * @param {string[]} selectedListIDs List ids
+ * @param {string} resourceEventId Id of the event to add to the list
+ * @param {number} [index] index to insert the note
  */
 export const addResourceToLists = async (selectedListIDs, resourceEventId, index = null) => {
   const ndk = get(ndkStore);
@@ -17,32 +17,30 @@ export const addResourceToLists = async (selectedListIDs, resourceEventId, index
       console.log("Permission granted to read their public key:", user.npub);
     }
   });
-  const promises = selectedListIDs.map(async (listID) => {
+  for (const listID of selectedListIDs) {
     const event = new NDKEvent(ndk);
-    const selectedList = getSelectedListFromID(get(user).lists, listID)
-    const listName = getListName(selectedList)
-    const existingEvents = getListEvents(selectedList)
+    const selectedList = get(user).lists.find(l => l.eventId === listID)
+    const listName = selectedList.name
+    const existingEvents = selectedList.publicItems
     event.kind = 30001;
     event.content = "";
     if (index === null) {
       event.tags = [
-        ["d", listID],
-        ["name", listName],
+        ["d", selectedList.name],
         ...(existingEvents.length ? existingEvents : []),
         ["e", resourceEventId]
       ]
     } else {
       existingEvents.splice(index + 1, 0, ["e", resourceEventId]);
       event.tags = [
-        ["d", listID],
+        ["d", selectedList.name],
         ["name", listName],
         ...existingEvents
       ]
     }
     await event.sign(ndk.signer)
-    await event.publish(event)
-    // update lists
-  });
-  await Promise.all(promises)
-  user.updateLists(ndk, get(user).pk)
+    await event.publish()
+  };
+  // update user lists
+  await user.updateLists(get(user).pk)
 }

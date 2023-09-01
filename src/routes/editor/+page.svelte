@@ -5,12 +5,12 @@
 	import { submitMultipleEvents } from '$lib/nostr/editor/submitToRelay';
 	import bots from '$lib/bots/bots.json';
 	import createTextNote from '$lib/nostr/editor/createEventTextNote';
-	import { getSelecetedBotsFromMetadata } from '$lib/utils';
+	import { getSelecetedBotsFromMetadata } from '$lib/utils/helpers.js';
 	import { genNpub } from '$lib/nostr/editor/genNip19.js';
 	import Author from '$lib/editor/Author.svelte';
-	import { generateShortId } from '$lib/utils.js';
+	import { generateShortId } from '$lib/utils/helpers.js';
 	import MdContributor from '$lib/editor/MDContributor.svelte';
-	import { activeMenu } from '$lib/stores.js';
+	import { activeMenu } from '$lib/stores/user.js';
 
 	// if page is visited directly make sure to set it active
 	activeMenu.update((m) => ({ ...m, addResource: true }));
@@ -95,7 +95,7 @@
 					on:change={handleURL}
 					bind:value={$resource.id}
 					type="text"
-					class="input-bordered input"
+					class="input input-bordered"
 				/>
 			</div>
 			<div>
@@ -104,7 +104,7 @@
 				</label>
 				<input
 					bind:value={$resource.name}
-					class="input-bordered input"
+					class="input input-bordered"
 					type="text"
 				/>
 			</div>
@@ -114,7 +114,7 @@
 				</label>
 				<textarea
 					bind:value={$resource.description}
-					class="textarea-bordered textarea"
+					class="textarea textarea-bordered"
 					placeholder="Description"
 				/>
 			</div>
@@ -122,7 +122,7 @@
 				<label class="label"> Image URL </label>
 				<input
 					bind:value={$resource.image}
-					class="input-bordered input"
+					class="input input-bordered"
 					type="text"
 				/>
 			</div>
@@ -146,7 +146,7 @@
 							...$resource.authors,
 							{ name: '', npub: '', id: generateShortId() }
 						])}
-					class="btn-sm btn-circle btn">+</label
+					class="btn btn-circle btn-sm">+</label
 				>
 			</div>
 			{#each $resource.authors as author}
@@ -163,7 +163,7 @@
 						data-tip="You must provide at least a valid URL and name"
 					>
 						<button
-							class="btn-disabled btn-primary btn m-2 block"
+							class="btn btn-disabled btn-primary m-2 block"
 							type="submit">Publish</button
 						>
 					</div>
@@ -183,7 +183,7 @@
 					{#each events as event}
 						<li class="ml-4 list-disc">
 							<a
-								href="https://primal.net/p/{genNpub(event.pubkey)}"
+								href="https://snort.social/p/{genNpub(event.pubkey)}"
 								target="_blank"
 							>
 								{bots.find((b) => b.pk === event.pubkey)?.title ||

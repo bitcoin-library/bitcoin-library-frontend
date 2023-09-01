@@ -1,5 +1,5 @@
 <script>
-	import { user as currentUser } from '$lib/stores.js';
+	import { user as currentUser } from '$lib/stores/user.js';
 	import VerifiedCheckIcon from '$lib/elements/icons/VerifiedCheck.svelte';
 	import XMarkIcon from '$lib/elements/icons/XMark.svelte';
 	import { page } from '$app/stores';
@@ -8,7 +8,7 @@
 	dayjs.extend(relativeTime);
 	import { createEventDispatcher } from 'svelte';
 	import NoteContent from '$lib/NoteContent.svelte';
-	import { getUser } from '$lib/User';
+	import { getUser } from '$lib/utils/user';
 	import { Avatar, Name } from '@nostr-dev-kit/ndk-svelte-components';
 	import { ndkStore as ndk } from '$lib/stores/ndk';
 	// import ItemsOptionsPopover from '$lib/components/ItemsOptionsPopover.svelte';

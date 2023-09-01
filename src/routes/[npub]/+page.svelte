@@ -2,13 +2,13 @@
 	export let data;
 
 	import { listStore, allowListEdit } from '$lib/stores/lists.js';
-	import { user, activeMenu } from '$lib/stores';
+	import { user, activeMenu } from '$lib/stores/user.js';
 	import { login } from '$lib/nostr/login.js';
 
 	import Menu from '$lib/Menu.svelte';
 	import ListComponent from '$lib/List.svelte';
 	import { Icon } from 'svelte-awesome';
-	import { addList } from '$lib/nostr/addList';
+	import { addList } from '$lib/utils/lists/addList';
 	import { plus, pencil, shareAlt } from 'svelte-awesome/icons';
 
 	if (data.pubkey) {
@@ -65,17 +65,16 @@
 			</label>
 		</div>
 	{/if}
-	{#if data.pubkey}
-		<p>{JSON.stringify(data)}</p>
-		{#if !$listStore.length}
-			Loading...
-		{:else}
-			{#each $listStore as list, i}
-				<ListComponent {list} />
-			{/each}
-		{/if}
-	{:else}
+
+	{#if !data.pubkey}
 		<p>Did not find that pubkey :(</p>
+	{/if}
+	{#if !$listStore.length}
+		Loading...
+	{:else}
+		{#each $listStore as list, i}
+			<ListComponent {list} />
+		{/each}
 	{/if}
 </div>
 
