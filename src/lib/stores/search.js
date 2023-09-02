@@ -2,7 +2,7 @@ import { writable, derived, get } from "svelte/store";
 import keywords from "$lib/bots/keywords.json"
 import resourceTypes from "$lib/bots/resourceTypes.json"
 
-export const openFilterbar = writable(false);
+export const openFilterbar = writable(0);
 export const searchResults = writable([])
 export const searchTerm = writable("")
 export const pagination = writable({

@@ -1,8 +1,11 @@
 <script>
 	import { openFilterbar, searchTerm } from '$lib/stores/search.js';
+	import { selectedCard } from '$lib/stores/user';
 	import Icon from 'svelte-awesome';
-	import { close, filter } from 'svelte-awesome/icons';
+	import { filter } from 'svelte-awesome/icons';
 	import { submitSearch } from '$lib/meili/submitSearch.js';
+
+	$: console.log($openFilterbar);
 </script>
 
 <form on:submit|preventDefault={submitSearch} class="">
@@ -32,13 +35,15 @@
 				>
 			</button>
 		</div>
-		<button on:click={() => ($openFilterbar = !$openFilterbar)} class="btn">
+		<button
+			on:click={() => openFilterbar.set(Math.floor(Math.random() * (10 + 1)))}
+			on:click={() => {
+				selectedCard.set({});
+			}}
+			class="btn"
+		>
 			<span>Filter</span>
-			{#if $openFilterbar}
-				<Icon class="swap-off pl-1" data={close} />
-			{:else}
-				<Icon class="swap-on pl-1" data={filter} />
-			{/if}
+			<Icon class="swap-on pl-1" data={filter} />
 		</button>
 	</div>
 </form>

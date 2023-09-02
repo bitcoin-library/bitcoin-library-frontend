@@ -10,7 +10,7 @@
 		.flat();
 </script>
 
-<div>
+<div class="">
 	<div class="flex flex-row items-center">
 		<p class="ml-6 mr-2">
 			<span class="font-semibold">{$totalHits}</span>

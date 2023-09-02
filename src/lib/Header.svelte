@@ -12,14 +12,9 @@
 
 <!-- z-index puts navbar behind overlay -->
 <div
-	class="navbar top-0 z-10 flex flex-row justify-between gap-2 bg-base-100 sm:sticky"
+	class="navbar top-0 z-10 flex flex-row justify-between gap-2 bg-base-100 md:sticky"
 >
-	<a
-		on:click={() => ($openDetailbar = false)}
-		on:click={() => activeMenu.reset()}
-		href="/"
-		class="self-start text-xl font-bold">Bitcoin-Library</a
-	>
+	<a href="/" class="self-start text-xl font-bold">Bitcoin-Library</a>
 	<div class="visible ml-auto md:hidden">
 		<Menu />
 	</div>
@@ -44,7 +39,7 @@
 </div>
 <!-- mobile view -->
 {#if !$activeMenu.addResource}
-	<div class="visible flex w-full flex-col md:hidden">
+	<div class="navbar visible flex w-full flex-col md:hidden">
 		<div class="m-2 justify-center md:hidden">
 			<SearchHeader />
 		</div>

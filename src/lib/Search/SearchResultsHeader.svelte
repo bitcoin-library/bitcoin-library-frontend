@@ -1,6 +1,7 @@
 <script>
-	import { filters } from '$lib/stores/search.js';
+	import { filters, openFilterbar } from '$lib/stores/search.js';
 	import { submitSearch } from '$lib/meili/submitSearch.js';
+	import { selectedCard } from '$lib/stores/user';
 	export let checked;
 </script>
 
@@ -38,6 +39,8 @@
 		<button
 			class="btn btn-xs ml-2 cursor-pointer"
 			on:click={() => {
+				selectedCard.set({});
+				openFilterbar.set(false);
 				filters.resetAll();
 				submitSearch();
 			}}>Remove all filters</button

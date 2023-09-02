@@ -1,5 +1,6 @@
 <script>
 	import { user, selectedCard } from '$lib/stores/user.js';
+	import { openFilterbar } from '$lib/stores/search.js';
 	import Tags from '$lib/Resource/Tags.svelte';
 	import { plus, check } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
@@ -34,7 +35,12 @@
 		? bordered
 		: 'border-2 border-white'}"
 >
-	<div on:click={() => selectedCard.set(item)}>
+	<div
+		on:click={() => {
+			$openFilterbar = false;
+			selectedCard.set(item);
+		}}
+	>
 		<!-- only display if item.last updated is not older than a week  -->
 		{#if item.updated_at > Date.now() - 86400000}
 			<div class="po badge badge-secondary absolute right-6 top-2">NEW</div>

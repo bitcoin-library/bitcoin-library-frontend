@@ -1,5 +1,5 @@
 <script>
-	import { filters, searchTerm } from '$lib/stores/search.js';
+	import { filters } from '$lib/stores/search.js';
 	import { checkSquare, chevronDown } from 'svelte-awesome/icons'; // alternative, more efficient import
 	import Icon from 'svelte-awesome';
 	import { submitSearch } from '$lib/meili/submitSearch';
@@ -10,21 +10,21 @@
 	$: activeFilter = property.attributes.some((e) => e.checked === true);
 </script>
 
-<div class="dropdown">
-	<label class="btn flex flex-row gap-2" tabindex="0">
-		<span class="">{property.name}</span>
-		<div class="" class:invisible={!activeFilter}>
-			<Icon style="color: orange" data={checkSquare} />
-		</div>
-		<Icon data={chevronDown} />
-	</label>
-	<div
-		tabindex="0"
-		class="card dropdown-content card-compact w-64 bg-primary p-2 text-primary-content shadow"
-	>
+<!-- mobile view -->
+<div class="collapse bg-base-200">
+	<input type="checkbox" />
+	<div class="collapse-title text-xl font-medium">
+		<label class="btn flex flex-row gap-2" tabindex="0">
+			<span class="">{property.name}</span>
+			<div class="" class:invisible={!activeFilter}>
+				<Icon style="color: orange" data={checkSquare} />
+			</div>
+			<Icon data={chevronDown} />
+		</label>
+	</div>
+	<div class=" collapse-content justify-center rounded bg-primary">
 		<div class="form-control">
 			{#each property.attributes as attribute}
-				<!-- TODO handle click wieder einfügen -->
 				<label
 					on:click={() => filters.toggleFilter(property.id, attribute)}
 					on:click={() => submitSearch()}

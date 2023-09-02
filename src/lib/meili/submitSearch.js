@@ -3,7 +3,6 @@ import { searchTerm, pagination, filters, searchResults, totalHits } from '$lib/
 
 
 export const submitSearch = async (event) => {
-  console.log("lib/search called")
   const result = await fetch("/api/search", {
     method: "POST",
     body: JSON.stringify({
