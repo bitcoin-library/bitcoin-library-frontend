@@ -51,15 +51,15 @@
 
 		<ul
 			tabindex="0"
-			class="dropdown-content rounded-box max-h-96 w-64 overflow-auto bg-white p-2 shadow"
+			class="dropdown-content rounded-box z-[1] max-h-96 w-64 overflow-auto bg-white p-2 shadow"
 		>
 			{#each sorted(property.items.enum) as attribute}
 				<li>
 					<!-- svelte-ignore a11y-label-has-associated-control -->
 					<label
 						class="
-						label 
-						cursor-pointer 
+						label
+						cursor-pointer
 						hover:bg-orange-600"
 						on:click={toggle(attribute)}
 					>
@@ -74,7 +74,7 @@
 			{/each}
 			<!-- svelte-ignore a11y-label-has-associated-control -->
 			<label
-				class="btn-warning btn"
+				class="btn btn-warning"
 				on:click={() => resource.updateResource(property, [])}
 				on:click={() => (toggledValues = [])}>Reset</label
 			>
