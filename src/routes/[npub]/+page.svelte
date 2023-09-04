@@ -20,7 +20,7 @@
 
 <!-- header -->
 <div
-	class="navbar sticky top-0 z-50 flex flex-row justify-between gap-2 bg-base-100"
+	class="navbar sticky top-0 flex flex-row justify-between gap-2 bg-base-100"
 >
 	<a
 		on:click={() => activeMenu.reset()}
@@ -51,7 +51,7 @@
 	</div>
 {/if}
 
-<div class="mx-auto w-3/4">
+<div class="mx-auto w-full px-2 sm:w-3/4">
 	{#if $user.npub}
 		<div class="form-control my-2 flex flex-row gap-2">
 			<label for="create-list-modal" class="btn">Create New List</label>

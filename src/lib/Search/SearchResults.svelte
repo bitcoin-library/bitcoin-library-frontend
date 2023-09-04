@@ -10,27 +10,25 @@
 		.flat();
 </script>
 
-<div class="">
-	<div class="flex flex-row items-center">
-		<p class="ml-6 mr-2">
-			<span class="font-semibold">{$totalHits}</span>
-			hits
-		</p>
-		{#if checked.length}
-			<span class="mr-2">for </span>
-			<SearchResultsHeader bind:checked />
-		{/if}
-	</div>
-
-	<div class="flex flex-wrap justify-center gap-2">
-		{#if $searchResults.length}
-			{#each $searchResults as result}
-				<Card item={result} />
-			{/each}
-		{:else}
-			<div>No Results</div>
-		{/if}
-	</div>
-
-	<Pagination />
+<div class="flex flex-row items-center">
+	<p class="ml-6 mr-2">
+		<span class="font-semibold">{$totalHits}</span>
+		hits
+	</p>
+	{#if checked.length}
+		<span class="mr-2">for </span>
+		<SearchResultsHeader bind:checked />
+	{/if}
 </div>
+
+<div class="flex flex-wrap justify-center gap-2">
+	{#if $searchResults.length}
+		{#each $searchResults as result}
+			<Card item={result} />
+		{/each}
+	{:else}
+		<div>No Results</div>
+	{/if}
+</div>
+
+<Pagination />

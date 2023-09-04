@@ -11,42 +11,40 @@
 </script>
 
 <!-- mobile view -->
-<div class="collapse bg-base-200">
+<div class="collapse">
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
-		<label class="btn flex flex-row gap-2" tabindex="0">
-			<span class="">{property.name}</span>
-			<div class="" class:invisible={!activeFilter}>
+		<label class="flex flex-row gap-2" tabindex="0">
+			<span>{property.name}</span>
+			<div class:invisible={!activeFilter}>
 				<Icon style="color: orange" data={checkSquare} />
 			</div>
 			<Icon data={chevronDown} />
 		</label>
 	</div>
-	<div class=" collapse-content justify-center rounded bg-primary">
-		<div class="form-control">
-			{#each property.attributes as attribute}
-				<label
-					on:click={() => filters.toggleFilter(property.id, attribute)}
-					on:click={() => submitSearch()}
-					class="label cursor-pointer hover:bg-violet-600"
-				>
-					<span class="label-text px-2">{attribute.value}</span>
-					{#if attribute.checked}
-						<Icon style="color:orange" data={checkSquare} />
-					{:else}
-						<Icon style="color:grey" data={checkSquare} />
-					{/if}
-				</label>
-			{/each}
-			<div>
-				<button
-					class="btn"
-					on:click={() => {
-						filters.reset(property.id);
-					}}
-					on:click={() => submitSearch()}>Reset</button
-				>
-			</div>
+	<div class="collapse-content w-full sm:w-2/3">
+		{#each property.attributes as attribute}
+			<label
+				on:click={() => filters.toggleFilter(property.id, attribute)}
+				on:click={() => submitSearch()}
+				class="label cursor-pointer hover:bg-orange-500 hover:text-black"
+			>
+				{attribute.value}
+				{#if attribute.checked}
+					<Icon style="color:orange" data={checkSquare} />
+				{:else}
+					<Icon style="color:grey" data={checkSquare} />
+				{/if}
+			</label>
+		{/each}
+		<div>
+			<button
+				class="btn"
+				on:click={() => {
+					filters.reset(property.id);
+				}}
+				on:click={() => submitSearch()}>Reset</button
+			>
 		</div>
 	</div>
 </div>

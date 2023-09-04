@@ -45,7 +45,7 @@
 			<div id="drawer" class="drawer-side">
 				<label for="resource-drawer" class="drawer-overlay" />
 				<ul
-					class="md:w1/3 menu min-h-full w-full bg-base-200 p-4 text-base-content sm:w-1/2"
+					class="menu min-h-full w-full bg-base-200 p-4 text-base-content sm:w-1/2 md:w-1/3"
 				>
 					{#if $selectedCard.id}
 						<!-- Sidebar content here -->

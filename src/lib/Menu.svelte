@@ -7,15 +7,11 @@
 	import { Avatar } from '@nostr-dev-kit/ndk-svelte-components';
 </script>
 
-<div class="dropdown dropdown-end">
-	<label class="avatar btn btn-circle btn-ghost">
+<div class="dropdown-end dropdown">
+	<label tabindex="0" class="avatar btn btn-circle">
 		<button class="btn btn-circle">
 			{#if $user.npub}
-				<Avatar
-					ndk={$ndk}
-					pubkey={$user.pk}
-					class="h-14 w-14 rounded-full border border-zinc-200 dark:border-zinc-800"
-				/>
+				<Avatar ndk={$ndk} pubkey={$user.pk} class="h-14 w-14 rounded-full" />
 			{:else}
 				<Icon data={navicon} />
 			{/if}
@@ -23,18 +19,14 @@
 	</label>
 	<!-- menu items -->
 	<ul
-		on:click={() => {
-			if (document.activeElement instanceof HTMLElement) {
-				document.activeElement.blur();
-			}
-		}}
-		class="menu menu dropdown-content rounded-box z-[1] mt-3 w-52 bg-base-100 p-2 shadow"
+		tabindex="0"
+		class="menu dropdown-content rounded-box z-[1] w-52 bg-base-300 p-2 shadow"
 	>
-		<li>
-			{#if !$user.npub}
+		{#if !$user.npub}
+			<li>
 				<button on:click={login}>Login</button>
-			{/if}
-		</li>
+			</li>
+		{/if}
 		<li>
 			<a
 				href={!$activeMenu.addResource ? '/' : '/editor'}

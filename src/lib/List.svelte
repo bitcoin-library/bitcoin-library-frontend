@@ -110,7 +110,7 @@
 	$: itemCount = list.publicItems.length + privateItems.length;
 </script>
 
-<div class="border- m-2 rounded border border-solid border-white">
+<div class="m-2 rounded border border-solid border-white p-1">
 	<div class="mb-6 flex flex-row items-center gap-2 rounded md:gap-4">
 		<h2
 			class="flex flex-row items-center gap-1 break-words font-semibold md:text-xl"
@@ -124,7 +124,7 @@
 				{list.name}
 			</span>
 		</h2>
-		<InfoIcon />
+		<!-- <InfoIcon /> -->
 		<!-- <Tooltip -->
 		<!-- 	type="custom" -->
 		<!-- 	class="flex flex-col gap-1 border border-black/20 bg-zinc-100 text-sm shadow-xl dark:bg-zinc-800" -->
