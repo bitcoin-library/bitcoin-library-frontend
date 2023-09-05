@@ -31,6 +31,17 @@
 			class="btn">Add Resource</a
 		>
 		{#if $user.npub}
+			<label class="btn">
+				<!-- TODO rework the second on:click stuff  -->
+				<a
+					class:active={$activeMenu.lists}
+					on:click={() =>
+						activeMenu.update((m) => ({ ...m, lists: !m.lists }))}
+					href="/{$user.npub}">My Lists</a
+				>
+			</label>
+		{/if}
+		{#if $user.npub}
 			<Menu />
 		{:else}
 			<button class="btn" on:click={login}>Login</button>

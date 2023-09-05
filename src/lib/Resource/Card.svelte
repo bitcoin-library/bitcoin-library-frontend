@@ -30,7 +30,7 @@
 <!-- TODO make flex column and assign space values -->
 <!-- negative z-index to put menu dropdown before card -->
 <div
-	class="h-112 card-compact card relative -z-[1] m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 card card-compact relative m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
