@@ -82,8 +82,9 @@
 <input type="checkbox" id="create-list-modal" class="modal-toggle" />
 <div class="modal">
 	<div class="modal-box relative">
-		<label for="my-modal" class="btn btn-circle btn-sm absolute right-2 top-2"
-			>✕</label
+		<label
+			for="create-list-modal"
+			class="btn btn-circle btn-sm absolute right-2 top-2">✕</label
 		>
 		<h3 class="text-lg font-bold">Create New List</h3>
 		<form>
