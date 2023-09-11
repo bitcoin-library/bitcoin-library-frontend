@@ -28,36 +28,30 @@
 </script>
 
 <div
-	class="h-112 m-2 flex w-80 flex-col rounded-lg bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 m-2 flex flex w-80 flex-col rounded-lg bg-base-100 p-2 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
 >
 	<div
-		class=""
+		class="flex flex-col justify-items-center"
 		on:click={() => {
 			$openFilterbar = false;
 			selectedCard.set(item);
 		}}
 	>
-		<!-- only display if item.last updated is not older than a week  -->
-		{#if item.updated_at > Date.now() - 86400000}
-			<div class="po badge badge-secondary absolute right-6 top-2">NEW</div>
-		{/if}
 		<img
-			class="h-48 object-cover p-4"
+			class="h-48 object-cover"
 			src={item.image || './images/Bitcoin.png'}
 			alt="Here could be your image"
 		/>
-		<div class="card-body">
-			<div class="justify-end">
-				<Tags properties={item.keywords} />
-			</div>
-			<h2 class="card-title">
-				{item.name}
-			</h2>
-			<p>{shorten(item.description, 120)} [...]</p>
+		<div class="justify-end p-1">
+			<Tags properties={item.keywords} />
 		</div>
+		<h2 class="card-title">
+			{item.name}
+		</h2>
+		<p>{shorten(item.description, 120)} [...]</p>
 	</div>
 	{#if $user.npub}
 		<label
