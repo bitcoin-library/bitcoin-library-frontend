@@ -30,6 +30,7 @@
 		>!
 	</p>
 	<Header />
+	<SearchResults />
 	<div class="flex flex-row">
 		<div class="drawer drawer-end">
 			<input
@@ -38,10 +39,6 @@
 				type="checkbox"
 				class="drawer-toggle"
 			/>
-			<div class="drawer-content">
-				<!-- Page content here -->
-				<SearchResults />
-			</div>
 			<div id="drawer" class="drawer-side">
 				<label for="resource-drawer" class="drawer-overlay" />
 				<ul
