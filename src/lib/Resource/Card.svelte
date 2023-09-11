@@ -27,15 +27,14 @@
 	}
 </script>
 
-<!-- TODO make flex column and assign space values -->
-<!-- negative z-index to put menu dropdown before card -->
 <div
-	class="h-112 card card-compact relative m-2 w-80 bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
+	class="h-112 m-2 flex w-80 flex-col rounded-lg bg-base-100 hover:cursor-pointer hover:border-2 hover:border-orange-500 {$selectedCard ==
 	item
 		? bordered
 		: 'border-2 border-white'}"
 >
 	<div
+		class=""
 		on:click={() => {
 			$openFilterbar = false;
 			selectedCard.set(item);
@@ -45,13 +44,11 @@
 		{#if item.updated_at > Date.now() - 86400000}
 			<div class="po badge badge-secondary absolute right-6 top-2">NEW</div>
 		{/if}
-		<figure>
-			<img
-				class="h-48 object-cover p-4"
-				src={item.image || './images/Bitcoin.png'}
-				alt="Here could be your image"
-			/>
-		</figure>
+		<img
+			class="h-48 object-cover p-4"
+			src={item.image || './images/Bitcoin.png'}
+			alt="Here could be your image"
+		/>
 		<div class="card-body">
 			<div class="justify-end">
 				<Tags properties={item.keywords} />

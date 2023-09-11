@@ -10,7 +10,6 @@
 	import Menu from './Menu.svelte';
 </script>
 
-<!-- z-index puts navbar behind overlay -->
 <div
 	class="navbar top-0 flex flex-row justify-between gap-2 bg-base-100 md:sticky"
 >
