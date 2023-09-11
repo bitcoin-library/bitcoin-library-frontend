@@ -19,12 +19,15 @@
 		{/if}
 	</div>
 	<div class="hidden gap-2 self-start md:flex">
-		<a
-			href="/editor"
-			class:hidden={$activeMenu.addResource}
-			on:click={() => activeMenu.update((m) => ({ ...m, addResource: true }))}
-			class="btn">Add Resource</a
-		>
+		{#if !$page.route.id === '/editor'}
+			<a
+				href="/editor"
+				class:hidden={$activeMenu.addResource}
+				on:click={() =>
+					activeMenu.update((m) => ({ ...m, addResource: true }))}
+				class="btn">Add Resource</a
+			>
+		{/if}
 		{#if $user.npub}
 			<Menu />
 		{:else}

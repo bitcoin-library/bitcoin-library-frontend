@@ -10,10 +10,7 @@
 	import Author from '$lib/editor/Author.svelte';
 	import { generateShortId } from '$lib/utils/helpers.js';
 	import MdContributor from '$lib/editor/MDContributor.svelte';
-	import { activeMenu } from '$lib/stores/user.js';
 
-	// if page is visited directly make sure to set it active
-	activeMenu.update((m) => ({ ...m, addResource: true }));
 	export let data;
 	const { properties } = schema;
 	let events = [];

@@ -9,6 +9,8 @@
 	import Header from '$lib/Header.svelte';
 	import Detailbar from '$lib/Detailbar.svelte';
 	import Filterbar from '$lib/Search/Filterbar.svelte';
+	import { Icon } from 'svelte-awesome';
+	import info from 'svelte-awesome/icons/info';
 
 	// load data for first render
 	export let data;
@@ -21,14 +23,21 @@
 </script>
 
 <div>
-	<p class="rounded border border-4 border-purple-500 p-2 text-center text-xl">
-		Bear with me, I'm still work in progress. Feel free <a
-			class="underline"
-			target="_blank"
-			href="https://snort.social/p/npub1r30l8j4vmppvq8w23umcyvd3vct4zmfpfkn4c7h2h057rmlfcrmq9xt9ma"
-			>to reach out</a
-		>!
-	</p>
+	<div
+		class="flex flex-row justify-center rounded border border-4 border-purple-500 p-2 text-center text-xl"
+	>
+		<span class="mx-auto">
+			Bear with me, I'm still work in progress. Feel free <a
+				class="underline"
+				target="_blank"
+				href="https://snort.social/p/npub1r30l8j4vmppvq8w23umcyvd3vct4zmfpfkn4c7h2h057rmlfcrmq9xt9ma"
+				>to reach out</a
+			>!
+		</span>
+		<a href="/about" class="btn btn-circle btn-outline btn-sm">
+			<Icon data={info} />
+		</a>
+	</div>
 	<Header />
 	<SearchResults />
 	<div class="flex flex-row">
