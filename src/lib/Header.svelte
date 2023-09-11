@@ -7,9 +7,9 @@
 </script>
 
 <div
-	class="navbar top-0 flex flex-row justify-between gap-2 bg-base-100 md:sticky"
+	class="navbar top-0 flex flex-row items-center justify-between gap-2 bg-base-100 md:sticky"
 >
-	<a href="/" class="self-start text-xl font-bold">Bitcoin-Library</a>
+	<a href="/" class="text-xl font-bold">Bitcoin-Library</a>
 	<div class="visible ml-auto md:hidden">
 		<Menu />
 	</div>
