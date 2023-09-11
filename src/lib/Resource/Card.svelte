@@ -5,6 +5,7 @@
 	import { plus, check } from 'svelte-awesome/icons';
 	import { Icon } from 'svelte-awesome';
 	import { addResourceToLists } from '$lib/utils/lists/addResourceToLists';
+	import ModalCreateList from '$lib/ModalCreateList.svelte';
 
 	export let item;
 	let modalOpen = false;
@@ -67,7 +68,7 @@
 <!-- add list modal -->
 <input type="checkbox" id="add-list-modal" class="modal-toggle" />
 <div class="modal">
-	<div class="modal-box relative">
+	<div class="modal-box relative flex flex-col">
 		<label
 			for="add-list-modal"
 			class="btn btn-circle btn-sm absolute right-2 top-2">✕</label
@@ -111,10 +112,17 @@
 				{/if}
 			{/each}
 		{/if}
-		<label
-			class="btn"
-			on:click={addResourceToLists(selectedLists, $selectedCard.eventID)}
-			on:click={() => (selectedLists = [])}>Add Resource To Lists</label
-		>
+		<div class="flex flex-row">
+			<label
+				class="btn"
+				on:click={addResourceToLists(selectedLists, $selectedCard.eventID)}
+				on:click={() => (selectedLists = [])}>Add Resource To Lists</label
+			>
+			<label for="create-list-modal" class="btn ml-auto mr-0"
+				>Create New List</label
+			>
+		</div>
 	</div>
 </div>
+
+<ModalCreateList />

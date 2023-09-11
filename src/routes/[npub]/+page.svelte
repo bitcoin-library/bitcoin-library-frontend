@@ -8,14 +8,12 @@
 	import Menu from '$lib/Menu.svelte';
 	import ListComponent from '$lib/List.svelte';
 	import { Icon } from 'svelte-awesome';
-	import { addList } from '$lib/utils/lists/addList';
-	import { plus, pencil, shareAlt } from 'svelte-awesome/icons';
+	import ModalCreateList from '$lib/ModalCreateList.svelte';
+	import { pencil } from 'svelte-awesome/icons';
 
 	if (data.pubkey) {
 		listStore.getListsForUser(data.pubkey);
 	}
-
-	let listName;
 </script>
 
 <!-- header -->
@@ -78,28 +76,4 @@
 	{/if}
 </div>
 
-<!-- add list modal -->
-<input type="checkbox" id="create-list-modal" class="modal-toggle" />
-<div class="modal">
-	<div class="modal-box relative">
-		<label
-			for="create-list-modal"
-			class="btn btn-circle btn-sm absolute right-2 top-2">✕</label
-		>
-		<h3 class="text-lg font-bold">Create New List</h3>
-		<form>
-			<label for="name">Name</label>
-			<input
-				type="text"
-				class="input input-bordered w-full max-w-xs"
-				id="name"
-				bind:value={listName}
-			/>
-		</form>
-		<div class="modal-action">
-			<label on:click={addList(listName)} for="create-list-modal" class="btn"
-				>Create!</label
-			>
-		</div>
-	</div>
-</div>
+<ModalCreateList />
