@@ -12,7 +12,6 @@
 		authors[0]?.addedByEvent &&
 		authors.sort((a, b) => b.addedByEvent.length - a.addedByEvent.length)[0]
 			.addedByEvent;
-	$: console.log(authors);
 </script>
 
 {#if authors.length}
@@ -24,7 +23,7 @@
 					{author.name} (Selected: {author.addedByEvent.length} / {longestArray.length})
 				</div>
 
-				<div on:click={zap(author.npub)} class="btn-sm btn">
+				<div on:click={zap(author.npub)} class="btn btn-sm">
 					Zap<Icon class="ml-2" data={bolt} />
 				</div>
 			</div>
