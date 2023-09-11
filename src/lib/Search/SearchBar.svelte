@@ -4,8 +4,6 @@
 	import Icon from 'svelte-awesome';
 	import { filter } from 'svelte-awesome/icons';
 	import { submitSearch } from '$lib/meili/submitSearch.js';
-
-	$: console.log($openFilterbar);
 </script>
 
 <form on:submit|preventDefault={submitSearch} class="">

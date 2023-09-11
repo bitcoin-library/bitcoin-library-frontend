@@ -16,7 +16,6 @@
 	let events = [];
 
 	function onSubmit() {
-		console.log('submit resource', $resource);
 		const publishBots = getSelecetedBotsFromMetadata($resource, bots);
 		chosenBots.set(publishBots);
 		events = publishBots.map((bot) => createTextNote(bot, $resource));
@@ -76,7 +75,6 @@
 	}
 
 	$: enablePublish = checkResource($resource);
-	$: console.log($resource);
 </script>
 
 <div class="flex w-full justify-center p-2">
