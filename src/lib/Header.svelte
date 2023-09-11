@@ -1,12 +1,8 @@
 <script>
+	import { page } from '$app/stores';
 	import SearchHeader from './Search/SearchHeader.svelte';
 	import { login } from '$lib/nostr/login.js';
-	import {
-		user,
-		openDetailbar,
-		activeMenu,
-		selectedCard
-	} from '$lib/stores/user.js';
+	import { user, activeMenu } from '$lib/stores/user.js';
 	import Menu from './Menu.svelte';
 </script>
 
@@ -18,7 +14,7 @@
 		<Menu />
 	</div>
 	<div class="hidden md:visible md:flex md:flex-row">
-		{#if !$activeMenu.addResource}
+		{#if $page.route.id !== '/editor'}
 			<SearchHeader />
 		{/if}
 	</div>

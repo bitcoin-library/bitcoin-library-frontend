@@ -1,4 +1,5 @@
 <script>
+	import { page } from '$app/stores';
 	import navicon from 'svelte-awesome/icons/navicon';
 	import { Icon } from 'svelte-awesome';
 	import { user, activeMenu } from '$lib/stores/user.js';
@@ -7,7 +8,7 @@
 	import { Avatar } from '@nostr-dev-kit/ndk-svelte-components';
 </script>
 
-<div class="dropdown-end dropdown">
+<div class="dropdown dropdown-end">
 	<label tabindex="0" class="avatar btn btn-circle">
 		<button class="btn btn-circle">
 			{#if $user.npub}
@@ -30,7 +31,7 @@
 		<li>
 			<a
 				href={!$activeMenu.addResource ? '/' : '/editor'}
-				class:active={$activeMenu.addResource}
+				class:active={$page.route.id === '/editor'}
 				on:click={() =>
 					activeMenu.update((m) => ({
 						...m,
