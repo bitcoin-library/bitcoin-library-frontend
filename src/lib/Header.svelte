@@ -4,6 +4,7 @@
 	import { login } from '$lib/nostr/login.js';
 	import { user, activeMenu } from '$lib/stores/user.js';
 	import Menu from './Menu.svelte';
+	console.log($page);
 </script>
 
 <div
@@ -19,10 +20,9 @@
 		{/if}
 	</div>
 	<div class="hidden gap-2 self-start md:flex">
-		{#if !$page.route.id === '/editor'}
+		{#if !($page.route.id == '/editor')}
 			<a
 				href="/editor"
-				class:hidden={$activeMenu.addResource}
 				on:click={() =>
 					activeMenu.update((m) => ({ ...m, addResource: true }))}
 				class="btn">Add Resource</a
