@@ -36,8 +36,8 @@
 	</div>
 </div>
 <!-- mobile view -->
-{#if !$activeMenu.addResource}
-	<div class="navbar visible flex w-full flex-col md:hidden">
+{#if $page.route.id !== '/editor'}
+	<div class="navbar flex w-full flex-col md:hidden">
 		<div class="m-2 justify-center md:hidden">
 			<SearchHeader />
 		</div>
